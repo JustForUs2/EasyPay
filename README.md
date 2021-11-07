@@ -3,7 +3,7 @@
  
  ## Idea description:
 
-The application will be a clone of the Lunar app focused on tracking expenses with interactive budgets.The onboarding process of uploading documents and creation of account will be skipped. The application will be built assuming there are already existing user accounts. Therefore, the process of uploading documentations from the user’s current bank will be skipped. The user will be able to login to an already existing account, track their expenses and get an overview of their budget.
+The application will be a clone of the Lunar app focused on tracking expenses with interactive budgets.The onboarding process of uploading documents and creation of account will be omitted. The application will be built assuming there are already existing user accounts. Therefore, the process of uploading documentations from the user’s current bank will be skipped. The user will be able to login to an already existing account, track their expenses and get an overview of their budget.
 
  
  ## Functional Requirements
