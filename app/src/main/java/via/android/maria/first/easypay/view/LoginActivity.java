@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -22,6 +23,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.util.Arrays;
+import java.util.List;
 
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.viewmodel.LoginViewModel;
@@ -120,8 +124,35 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void login(View view) {
+    /*this is what the documentation says if we want an email and pas login*/
 
+    public void login(View view) {
+       /* List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build());
+
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .build();
+
+        startActivity(signInIntent);   */
+    }
+    /*Code for email login
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            handleSignInRequest(resultCode);
+        }
     }
 
+    private void handleSignInRequest(int resultCode) {
+        if (resultCode == RESULT_OK)
+            goToMainActivity();
+        else
+            Toast.makeText(this, "SIGN IN CANCELLED", Toast.LENGTH_SHORT).show();
+    }
+     */
 }
