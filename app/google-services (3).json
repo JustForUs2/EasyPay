@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "397867155272",
+    "project_id": "easy-pay-7bc36",
+    "storage_bucket": "easy-pay-7bc36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397867155272:android:0a20f619354a8bb2443d7d",
+        "android_client_info": {
+          "package_name": "via.android.maria.first.easypay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397867155272-aau4ac6brhn1ch8qhb8br9vnc39m7rho.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "via.android.maria.first.easypay",
+            "certificate_hash": "11803da4c580be4e664c275ae9c7b53e4ae87e82"
+          }
+        },
+        {
+          "client_id": "397867155272-h8lv8rjh9cjqcc8vhg5cjmsr0sp8jcrf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU-YWtcGkFt5E_WBil1qu7SiTxkLzMmTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397867155272-h8lv8rjh9cjqcc8vhg5cjmsr0sp8jcrf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
