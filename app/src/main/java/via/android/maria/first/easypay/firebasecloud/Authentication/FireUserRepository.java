@@ -26,6 +26,6 @@ public class FireUserRepository {
         return currentUser;
     }
     public void signOut(){
-        AuthUI.getInstance().signOut(application);
+        AuthUI.getInstance().signOut(application.getApplicationContext());
     }
 }
