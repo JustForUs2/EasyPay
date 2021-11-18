@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         viewModel.init();
         checkIfSignedIn();
         setContentView(R.layout.activity_main);
+        welcomeBackMessage = findViewById(R.id.welcome_message);
+
         viewModel.getCurrentUser().observe(this, user -> {
             if(user != null)
                 Toast.makeText(this,
