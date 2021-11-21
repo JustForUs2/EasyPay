@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -42,7 +44,13 @@ public class MainActivity extends AppCompatActivity {
         newUser.setUsername("username");
         newUser.setPassword("password");
         
-        myRef.push().setValue(newUser); 
+        myRef.push().setValue(newUser);
+
+        // ####### Navigation
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        assert navHostFragment != null;
+        NavController navController = navHostFragment.getNavController();
     }
     private void checkIfSignedIn() {
         viewModel.getCurrentUser().observe(this, user -> {
