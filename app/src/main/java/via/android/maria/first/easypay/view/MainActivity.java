@@ -9,7 +9,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import via.android.maria.first.easypay.R;
+import via.android.maria.first.easypay.model.User;
 import via.android.maria.first.easypay.viewmodel.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,12 +28,21 @@ public class MainActivity extends AppCompatActivity {
         checkIfSignedIn();
         setContentView(R.layout.activity_main);
         welcomeBackMessage = findViewById(R.id.welcome_message);
+        User newUser = null; 
 
         viewModel.getCurrentUser().observe(this, user -> {
             if(user != null)
                 Toast.makeText(this,
                         "Welcome back "+user.getDisplayName(),Toast.LENGTH_SHORT).show();
         });
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference().child("User");
+        newUser.setId(1);
+        newUser.setUsername("username");
+        newUser.setPassword("password");
+        
+        myRef.push().setValue(newUser); 
     }
     private void checkIfSignedIn() {
         viewModel.getCurrentUser().observe(this, user -> {
@@ -49,4 +62,5 @@ public class MainActivity extends AppCompatActivity {
     public void signOut(View view){
         viewModel.signOut();
     }
+
 }
