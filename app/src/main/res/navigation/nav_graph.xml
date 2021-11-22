@@ -6,17 +6,8 @@
     app:startDestination="@id/main">
     <fragment
         android:id="@+id/main"
-        android:name="via.android.maria.first.easypay.view.MainFragment"
+        android:name="via.android.maria.first.easypay.view.LoginFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_main_to_dashboard"
-            app:destination="@id/dashboard" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment2"
-        android:name="via.android.maria.first.easypay.ui.login.LoginFragment"
-        android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/dashboard"
