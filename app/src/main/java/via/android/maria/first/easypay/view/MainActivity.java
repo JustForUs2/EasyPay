@@ -38,21 +38,6 @@ public class MainActivity extends AppCompatActivity {
         dashboard = findViewById(R.id.dashboard);
         // !! nav_host_fragment - empty container where destinations are swapped in and out
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-
-        /*
-        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        viewModel.init();
-        checkIfSignedIn();
-        setContentView(R.layout.activity_main);
-        welcomeBackMessage = findViewById(R.id.welcome_message);
-        User newUser = null;
-
-        viewModel.getCurrentUser().observe(this, user -> {
-            if(user != null)
-                Toast.makeText(this,
-                        "Welcome back "+user.getDisplayName(),Toast.LENGTH_SHORT).show();
-        });
-         */
     }
 
     public void signIn(View view) {
@@ -60,26 +45,5 @@ public class MainActivity extends AppCompatActivity {
             navController.navigate(R.id.dashboard);
         });
     }
-    /*
-    private void checkIfSignedIn() {
-        viewModel.getCurrentUser().observe(this, user -> {
-            if (user != null) {
-                String message = "Welcome " + user.getDisplayName();
-                welcomeBackMessage.setText(message);
-            } else
-                startLoginActivity();
-        });
-    }
-     */
-/*
-    private void startLoginActivity() {
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
-    }
-
-    public void signOut(View view){
-        viewModel.signOut();
-    }
-    */
 
 }

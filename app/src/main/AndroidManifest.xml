@@ -19,8 +19,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.LoginActivity"
-            android:exported="true"/>
     </application>
 
 </manifest>
