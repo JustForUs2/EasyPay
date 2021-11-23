@@ -57,9 +57,7 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         setSupportActionBar(toolbar);
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations
-        // showing as a burger menu on these screens
+        //top level navigation items as id set
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.dashboardFragment,
                 R.id.profileFragment

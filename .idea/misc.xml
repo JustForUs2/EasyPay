@@ -6,7 +6,9 @@
         <entry key="..\:/Users/const/AndroidStudioProjects/ANDProject/EasyPay/app/src/main/res/layout/login_activity.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/drawable/background_side_nav_bar.xml" value="0.2838541666666667" />
         <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/drawable/calculator.xml" value="0.2838541666666667" />
+        <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/drawable/ic_easy_logo_background.xml" value="0.37916666666666665" />
         <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/drawable/ic_iv_calculator.xml" value="0.2838541666666667" />
+        <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/drawable/ic_logo.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/layout/activity_main.xml" value="0.21829710144927536" />
         <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/layout/fragment_blank.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/layout/fragment_dashboard.xml" value="0.36302083333333335" />
@@ -18,6 +20,7 @@
         <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/menu/appbar.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/menu/bottom_nav.xml" value="0.2677083333333333" />
         <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/menu/navigation_drawer.xml" value="0.2677083333333333" />
+        <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/mipmap-anydpi-v26/ic_easy_logo.xml" value="0.2630208333333333" />
       </map>
     </option>
   </component>
