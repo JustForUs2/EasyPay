@@ -23,4 +23,8 @@
     <string name="contact">Contact</string>
     <string name="dashboard">Dashboard</string>
     <string name="profile">Profile</string>
+    <string name="current_balance">Current Balance</string>
+    <string name="_22_480">22.480 kr</string>
+    <string name="available_balance">Available Balance</string>
+    <string name="transfer">transfer</string>
 </resources>

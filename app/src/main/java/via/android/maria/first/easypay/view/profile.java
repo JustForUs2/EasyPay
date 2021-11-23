@@ -1,4 +1,4 @@
-package via.android.maria.first.easypay;
+package via.android.maria.first.easypay.view;
 
 import android.os.Bundle;
 
@@ -8,11 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link profile#newInstance} factory method to
- * create an instance of this fragment.
- */
+import via.android.maria.first.easypay.R;
+
 public class profile extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match

@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_dashboard" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="via.android.maria.first.easypay.profile"
+        android:name="via.android.maria.first.easypay.view.profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>
