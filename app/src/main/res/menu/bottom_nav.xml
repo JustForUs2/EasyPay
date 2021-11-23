@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- HERE ADD menu items -->
+    <item
+        android:id="@+id/dashboardFragment"
+        android:icon="@drawable/ic_baseline_adjust_24"
+        android:title="@string/dashboard" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/profile" />
+
+</menu>
