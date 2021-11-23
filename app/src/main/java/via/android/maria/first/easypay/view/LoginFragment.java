@@ -6,6 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavGraph;
+import androidx.navigation.NavGraphNavigator;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.text.Editable;
 import android.view.LayoutInflater;
@@ -24,6 +28,7 @@ import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.viewmodel.LoginViewModel;
 
 public class LoginFragment extends Fragment {
+
     private EditText email;
     private EditText password;
     private Button loginButton;
@@ -59,6 +64,7 @@ public class LoginFragment extends Fragment {
 
     private void navigateToDashboard() {
         // TODO implementation of dashboard
+        NavController navController = NavHostFragment.findNavController(this);
     }
 
     @Override
