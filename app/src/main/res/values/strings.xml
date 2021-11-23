@@ -27,4 +27,7 @@
     <string name="_22_480">22.480 kr</string>
     <string name="available_balance">Available Balance</string>
     <string name="transfer">transfer</string>
+    <string name="textview">TextView</string>
+    <string name="pending_transactions">Pending Transactions</string>
+    <string name="completed_transactions">Completed Transactions</string>
 </resources>
