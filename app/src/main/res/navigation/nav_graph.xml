@@ -3,24 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/main">
-    <fragment
-        android:id="@+id/main"
-        android:name="via.android.maria.first.easypay.view.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_main_to_dashboard"
-            app:destination="@id/dashboard" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment2"
-        android:name="via.android.maria.first.easypay.ui.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+    app:startDestination="@id/login">
     <fragment
         android:id="@+id/dashboard"
         android:name="via.android.maria.first.easypay.view.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/login"
+        android:name="via.android.maria.first.easypay.view.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 </navigation>

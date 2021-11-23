@@ -1,27 +1,19 @@
 package via.android.maria.first.easypay.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import via.android.maria.first.easypay.R;
-import via.android.maria.first.easypay.model.User;
-import via.android.maria.first.easypay.viewmodel.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
-    private MainActivityViewModel viewModel;
     private TextView welcomeBackMessage;
     private Button dashboard;
     NavController navController;
@@ -29,15 +21,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
         // ####### Navigation Component ###############
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         assert navHostFragment != null;
-        NavController navController = navHostFragment.getNavController();
+        navController = navHostFragment.getNavController();
 
         dashboard = findViewById(R.id.dashboard);
         // !! nav_host_fragment - empty container where destinations are swapped in and out
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
     }
 
     public void signIn(View view) {
