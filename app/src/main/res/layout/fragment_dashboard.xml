@@ -68,12 +68,12 @@
         android:backgroundTint="@color/secondaryColor"
         android:contentDescription="@string/transfer"
         android:src="@drawable/ic_swap"
-        android:tint="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.952"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout2"
-        app:rippleColor="#FFFFFF" />
+        app:rippleColor="#FFFFFF"
+        app:tint="@color/primaryTextColor" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
