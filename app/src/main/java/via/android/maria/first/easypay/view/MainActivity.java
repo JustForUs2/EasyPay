@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
         setupNavigation();
+        authorization();
     }
 
     private void initViews() {
@@ -100,7 +102,10 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
         if (currentUser != null) {
-
+            navController.navigate(R.id.dashboardFragment);
+        }
+        else {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
         }
 
     }
