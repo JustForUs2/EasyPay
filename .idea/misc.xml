@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/const/AndroidStudioProjects/ANDProject/EasyPay/app/src/main/res/layout/fragment_dashboard.xml" value="0.3558974358974359" />
+        <entry key="..\:/Users/const/AndroidStudioProjects/ANDProject/EasyPay/app/src/main/res/layout/fragment_transaction_list.xml" value="0.34739583333333335" />
         <entry key="..\:/Users/const/AndroidStudioProjects/ANDProject/EasyPay/app/src/main/res/layout/login_activity.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/const/AndroidStudioProjects/ANDProject/EasyPay/app/src/main/res/layout/transaction.xml" value="0.3558974358974359" />
+        <entry key="..\:/Users/const/AndroidStudioProjects/ANDProject/EasyPay/app/src/main/res/layout/transaction_list.xml" value="0.3614583333333333" />
         <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/layout/activity_main.xml" value="0.21829710144927536" />
         <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/layout/fragment_blank.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/maria/AndroidStudioProjects/EasyPay/app/src/main/res/layout/fragment_dashboard.xml" value="0.36302083333333335" />

@@ -14,16 +14,16 @@ import androidx.navigation.fragment.NavHostFragment;
 import via.android.maria.first.easypay.R;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView welcomeBackMessage;
-    private Button dashboard;
-    NavController navController;
+    //private TextView welcomeBackMessage;
+    //private Button dashboard;
+    //NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // ####### Navigation Component ###############
+      /*  // ####### Navigation Component ###############
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         assert navHostFragment != null;
@@ -39,4 +39,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+       */
+    }
 }
