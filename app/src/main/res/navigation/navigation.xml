@@ -18,7 +18,11 @@
         android:id="@+id/dashboardFragment"
         android:name="via.android.maria.first.easypay.view.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_transaction"
+            app:destination="@id/transaction" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="via.android.maria.first.easypay.view.profile"

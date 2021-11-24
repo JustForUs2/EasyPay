@@ -1,29 +1,28 @@
 package via.android.maria.first.easypay.view;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import via.android.maria.first.easypay.R;
+
 public class DashboardFragment extends Fragment {
+    private FloatingActionButton floatingCTA;
 
     public DashboardFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment dashboard.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static DashboardFragment newInstance(String param1, String param2) {
         DashboardFragment fragment = new DashboardFragment();
         Bundle args = new Bundle();
@@ -32,15 +31,28 @@ public class DashboardFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        findViews(view);
+        return view;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        floatingCTA.setOnClickListener((v) -> {
+            navigateToTransaction();
+        });
+    }
+
+    private void navigateToTransaction() {
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.navigate(R.id.transaction);
+    }
+
+    private void findViews(View view) {
+        floatingCTA = view.findViewById(R.id.fab);
     }
 
 }

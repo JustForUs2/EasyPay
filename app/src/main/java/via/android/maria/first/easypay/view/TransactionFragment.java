@@ -18,7 +18,6 @@ import org.jetbrains.annotations.NotNull;
 
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.model.Transaction;
-import via.android.maria.first.easypay.model.Transaction_02;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
 public class TransactionFragment extends Fragment {
@@ -47,24 +46,34 @@ public class TransactionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_transaction, container, false);
+        findViews(view);
         transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
-        transactionViewModel.init();
-        sendTransaction();
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        findViews(view);
-        // TODO on click button
 
+        sendButton.setOnClickListener((v) -> {
+
+            Transaction transaction = new Transaction();
+
+            transaction.setAmount(amount.getText().toString());
+            transaction.setAccountNumber(accountNumber.getText().toString());
+            transaction.setSortCode(sortCode.getText().toString());
+            transaction.setTransferName(transferName.getText().toString());
+
+            // TODO here ID is hardcoded - needs to be taken from logged in user's account
+            transactionViewModel.addTransaction(transaction, "WoFRKQTWczVOaFzzUF96");
+        });
     }
 
+    // TODO extract onClick is possible
     public void sendTransaction() {
         sendButton.setOnClickListener((v) -> {
 
-            Transaction_02 transaction = new Transaction_02();
+            Transaction transaction = new Transaction();
             transaction.setAmount(amount.getText().toString());
             transaction.setAccountNumber(accountNumber.getText().toString());
             transaction.setSortCode(sortCode.getText().toString());

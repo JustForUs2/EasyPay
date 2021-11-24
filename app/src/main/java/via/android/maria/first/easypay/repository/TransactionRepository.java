@@ -11,7 +11,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import via.android.maria.first.easypay.model.Transaction_02;
+import via.android.maria.first.easypay.model.Transaction;
 
 public class TransactionRepository {
     private static TransactionRepository instance;
@@ -27,8 +27,8 @@ public class TransactionRepository {
     }
 
     // TODO to be changed with make a transaction
-    public void addTransactionToAccount(Transaction_02 transaction, String accountId) {
-        database.collection("account").document("transaction-id-here")
+    public void addTransactionToAccount(Transaction transaction, String accountId) {
+        database.collection("account").document()
                 .collection("transactions").add(transaction).
         addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override

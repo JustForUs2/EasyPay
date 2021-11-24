@@ -1,26 +1,50 @@
 package via.android.maria.first.easypay.model;
 
 public class Transaction {
-    private String transferId;
+    private String amount, sortCode, accountNumber, transferName;
     private String description;
-    private String account;
-    private double amount;
-    private double balance;
 
-    public Transaction(String transferId, String description, String account, double amount, double balance) {
-        this.transferId = transferId;
-        this.description = description;
-        this.account = account;
+    public Transaction(String amount, String sortCode, String accountNumber, String transferName, String description) {
         this.amount = amount;
-        this.balance = balance;
+        this.sortCode = sortCode;
+        this.accountNumber = accountNumber;
+        this.transferName = transferName;
+        this.description = description;
     }
 
-    public String getTransferId() {
-        return transferId;
+    public Transaction() {
     }
 
-    public void setTransferId(String transferId) {
-        this.transferId = transferId;
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getSortCode() {
+        return sortCode;
+    }
+
+    public void setSortCode(String sortCode) {
+        this.sortCode = sortCode;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getTransferName() {
+        return transferName;
+    }
+
+    public void setTransferName(String transferName) {
+        this.transferName = transferName;
     }
 
     public String getDescription() {
@@ -30,28 +54,8 @@ public class Transaction {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
 }
+
+
+
+
