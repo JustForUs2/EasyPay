@@ -18,7 +18,11 @@
         android:id="@+id/dashboardFragment"
         android:name="via.android.maria.first.easypay.view.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_transaction"
+            app:destination="@id/transaction" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="via.android.maria.first.easypay.view.profile"
@@ -29,4 +33,9 @@
         android:name="via.android.maria.first.easypay.view.payment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" />
+    <fragment
+        android:id="@+id/transaction"
+        android:name="via.android.maria.first.easypay.view.TransactionFragment"
+        android:label="fragment_transaction"
+        tools:layout="@layout/fragment_transaction" />
 </navigation>

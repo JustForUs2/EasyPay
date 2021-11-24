@@ -33,4 +33,10 @@
     <string name="email">email</string>
     <string name="password">password</string>
     <string name="logout">Logout</string>
+    <string name="amount">Amount</string>
+    <string name="sort_code">sort code</string>
+    <string name="acount_number">Acount number</string>
+    <string name="name">Name</string>
+    <string name="button">Button</string>
+    <string name="send">Send</string>
 </resources>
