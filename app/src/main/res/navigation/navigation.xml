@@ -28,4 +28,9 @@
         android:name="via.android.maria.first.easypay.view.TransactionFragment"
         android:label="fragment_transaction"
         tools:layout="@layout/fragment_transaction" />
+    <fragment
+        android:id="@+id/savedAccounts"
+        android:name="via.android.maria.first.easypay.viewmodel.SavedAccounts"
+        android:label="fragment_saved_accounts"
+        tools:layout="@layout/fragment_saved_accounts" />
 </navigation>

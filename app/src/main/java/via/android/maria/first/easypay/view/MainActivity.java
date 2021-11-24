@@ -51,10 +51,9 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         setSupportActionBar(toolbar);
 
-        //top level navigation items as id set
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.dashboardFragment
-                //R.id.profileFragment
+                R.id.dashboardFragment,
+                R.id.savedAccounts
         )
                 .setOpenableLayout(drawerLayout)
                 .build();
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     private void setBottomNavigationVisibility() {
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             final int id = destination.getId();
-            if (id == R.id.dashboardFragment || id == R.id.profileFragment) {
+            if (id == R.id.dashboardFragment || id == R.id.savedAccounts) {
                 bottomNavigationView.setVisibility(View.VISIBLE);
             } else {
                 bottomNavigationView.setVisibility(View.GONE);
@@ -99,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
         else {
             Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
         }
-
     }
 
 
