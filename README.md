@@ -13,7 +13,6 @@ The application will be a clone of the Lunar app focused on tracking expenses wi
  - [ ] As a user I want to receive a notification when a payment has been completed
  - [ ] As a user I would like to save the user account to whom I am sending to, in order to maintain a list of people
  - [ ] As a user I would like to save the payment information of whom I am sending money to, in order to maintain a list of people to whom I often send money
- - [ ] As a user I want to get an overview of all of the payments I have made
  - [ ] As a user I want to be able to categorize my payments such that I know how much I spend on utilities
  - [ ] As a user I want to be able to categorize my payments such that I know how much I spend on food
  - [ ] As a user I want to be able to categorize my payments such that I know how much I spend on clothes.
