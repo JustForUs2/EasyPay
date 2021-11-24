@@ -1,23 +1,17 @@
 package via.android.maria.first.easypay.view;
 
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -59,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         //top level navigation items as id set
         appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.dashboardFragment,
-                R.id.profileFragment
+                R.id.dashboardFragment
+                //R.id.profileFragment
         )
                 .setOpenableLayout(drawerLayout)
                 .build();

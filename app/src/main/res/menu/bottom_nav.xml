@@ -6,8 +6,8 @@
         android:icon="@drawable/ic_baseline_adjust_24"
         android:title="@string/dashboard" />
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/recipientsFragment"
         android:icon="@drawable/ic_baseline_person_24"
-        android:title="@string/profile" />
+        android:title="@string/recipients" />
 
 </menu>
