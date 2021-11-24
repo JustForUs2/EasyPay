@@ -2,21 +2,20 @@ package via.android.maria.first.easypay.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 
-import via.android.maria.first.easypay.model.Transaction;
+import via.android.maria.first.easypay.model.Transaction_02;
 import via.android.maria.first.easypay.repository.TransactionRepository;
 
 // TODO check if there was another view model
 public class TransactionViewModel extends ViewModel {
-    private TransactionRepository transactionRepository;
+    private final TransactionRepository transactionRepository;
 
     public TransactionViewModel() {
         transactionRepository = TransactionRepository.getInstance();
     }
 
-    public void addTransaction(Transaction transaction, int accountIn)
+    public void addTransaction(Transaction_02 transaction, String accountId)
     {
-        transactionRepository.addTransactionToAccount(transaction, accountIn);
+        transactionRepository.addTransactionToAccount(transaction, accountId);
     }
-
 
 }
