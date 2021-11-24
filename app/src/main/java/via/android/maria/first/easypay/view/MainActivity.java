@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
         setupNavigation();
+        authorization();
     }
 
     private void initViews() {
@@ -55,9 +57,7 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         setSupportActionBar(toolbar);
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations
-        // showing as a burger menu on these screens
+        //top level navigation items as id set
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.dashboardFragment,
                 R.id.profileFragment
@@ -100,7 +100,10 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
         if (currentUser != null) {
-
+            navController.navigate(R.id.dashboardFragment);
+        }
+        else {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
         }
 
     }

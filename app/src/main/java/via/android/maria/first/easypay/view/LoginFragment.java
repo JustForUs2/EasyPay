@@ -35,14 +35,13 @@ public class LoginFragment extends Fragment {
     private TextView error;
     private LoginViewModel loginViewModel;
 
-    public LoginFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        loginViewModel.init();
+        return view;
     }
 
     @Override
@@ -55,30 +54,20 @@ public class LoginFragment extends Fragment {
         });
 
         loginViewModel.getIsSigned().observe(getViewLifecycleOwner(), a -> {
-            if (a){
+            if (a) {
                 navigateToDashboard();
             }
         });
-
+        loginButton.setOnClickListener((v) -> loginViewModel.authenticateUser(email.getText().toString(), password.getText().toString()));
     }
 
     private void navigateToDashboard() {
-        // TODO implementation of dashboard
         NavController navController = NavHostFragment.findNavController(this);
+        navController.navigate(R.id.dashboardFragment);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
-        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-        loginViewModel.init();
-        return view;
-    }
 
-    private void findViews(@NotNull View view)
-    {
+    private void findViews(@NotNull View view) {
         loginButton = view.findViewById(R.id.login);
         email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.password);
