@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_baseline_adjust_24"
         android:title="@string/dashboard" />
     <item
-        android:id="@+id/recipientsFragment"
+        android:id="@+id/SavedAccounts"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/recipients" />
 
