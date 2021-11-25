@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -47,6 +49,7 @@ public class DashboardFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         findViews(view);
         transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
+        transactionViewModel.init();
         return view;
     }
 
@@ -55,9 +58,10 @@ public class DashboardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        List<Transaction> transactions = transactionViewModel.getTransactions();
-        transactionAdapter = new TransactionAdapter(transactions);
+        LiveData<List<Transaction>> transactions = transactionViewModel.getTransactions();
+        transactionAdapter = new TransactionAdapter();
         recyclerView.setAdapter(transactionAdapter);
+        transactionViewModel.getTransactions().observe(getViewLifecycleOwner(), new TransactionObserverImpl());
 
         floatingCTA.setOnClickListener((v) -> {
             navigateToTransaction();
@@ -74,4 +78,11 @@ public class DashboardFragment extends Fragment {
         recyclerView = view.findViewById(R.id.completed_transactions);
     }
 
+    private class TransactionObserverImpl implements Observer<List<Transaction>> {
+        @Override
+        public void onChanged(List<Transaction> transactions) {
+            transactionAdapter.setTransactionList(transactions);
+            transactionAdapter.notifyDataSetChanged();
+        }
+    }
 }

@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import via.android.maria.first.easypay.R;
@@ -17,22 +16,12 @@ import via.android.maria.first.easypay.model.Transaction;
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> transactionList;
 
+
+
     public void setTransactionList(List<Transaction> transactionList) {
         this.transactionList = transactionList;
     }
 
-    public TransactionAdapter(List<Transaction> transactionList) {
-        this.transactionList = transactionList;
-    }
-
-    public TransactionAdapter() {
-        transactionList = new ArrayList<>();
-        Transaction transaction = new Transaction();
-        transaction.setAmount("100");
-        transaction.setAccountNumber("565683");
-        transaction.setTransferName("Alex");
-        transactionList.add(transaction);
-    }
 
     @NonNull
     @Override

@@ -5,6 +5,8 @@ import static android.content.ContentValues.TAG;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -14,7 +16,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import via.android.maria.first.easypay.model.Transaction;
@@ -22,7 +23,7 @@ import via.android.maria.first.easypay.model.Transaction;
 public class TransactionRepository {
     private static TransactionRepository instance;
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
-    List<Transaction> list = new ArrayList<>();
+    private MutableLiveData<List<Transaction>> list = new MutableLiveData<>();
 
 
     public TransactionRepository() {
@@ -52,16 +53,15 @@ public class TransactionRepository {
                 });
     }
 
-    public List<Transaction> getTransactions() {
-        ArrayList<Transaction> transactions = new ArrayList<>();
-        database.collection("account").document("transaction-id-here").collection("transactions")
+    public LiveData<List<Transaction>> getTransactions() {
+        database.collection("account").document("DK7U9MNWJGmq2YzdySx3").collection("transactions")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     QuerySnapshot document = task.getResult();
                     if (document != null) {
-                        list = document.toObjects(Transaction.class);
+                        list.setValue(document.toObjects(Transaction.class));
                     }
                 } else {
                     Log.w(TAG, "Error getting documents.", task.getException());

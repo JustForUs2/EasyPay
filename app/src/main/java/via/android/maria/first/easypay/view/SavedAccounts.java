@@ -1,4 +1,4 @@
-package via.android.maria.first.easypay.viewmodel;
+package via.android.maria.first.easypay.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
