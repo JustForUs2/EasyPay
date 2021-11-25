@@ -2,6 +2,8 @@ package via.android.maria.first.easypay.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 
+import java.util.List;
+
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.repository.TransactionRepository;
 
@@ -13,9 +15,14 @@ public class TransactionViewModel extends ViewModel {
         transactionRepository = TransactionRepository.getInstance();
     }
 
-    public void addTransaction(Transaction transaction, String accountId)
-    {
+    public void addTransaction(Transaction transaction, String accountId) {
         transactionRepository.addTransactionToAccount(transaction, accountId);
+    }
+
+    public List<Transaction> getTransactions()
+    {
+        List<Transaction> transactions = transactionRepository.getTransactions();
+        return transactions;
     }
 
 }

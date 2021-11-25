@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,12 +16,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 import via.android.maria.first.easypay.R;
+import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.view.adapter.TransactionAdapter;
+import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
 public class DashboardFragment extends Fragment {
     private FloatingActionButton floatingCTA;
     private TransactionAdapter transactionAdapter;
+    private TransactionViewModel transactionViewModel;
     private RecyclerView recyclerView;
 
     public DashboardFragment() {
@@ -40,6 +46,7 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         findViews(view);
+        transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
         return view;
     }
 
@@ -47,9 +54,10 @@ public class DashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        transactionAdapter = new TransactionAdapter();
-        recyclerView.setAdapter(transactionAdapter);
 
+        List<Transaction> transactions = transactionViewModel.getTransactions();
+        transactionAdapter = new TransactionAdapter(transactions);
+        recyclerView.setAdapter(transactionAdapter);
 
         floatingCTA.setOnClickListener((v) -> {
             navigateToTransaction();
