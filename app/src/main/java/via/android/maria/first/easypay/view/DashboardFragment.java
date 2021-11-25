@@ -10,13 +10,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import via.android.maria.first.easypay.R;
+import via.android.maria.first.easypay.view.adapter.TransactionAdapter;
 
 public class DashboardFragment extends Fragment {
     private FloatingActionButton floatingCTA;
+    private TransactionAdapter transactionAdapter;
+    private RecyclerView recyclerView;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -41,6 +46,11 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        transactionAdapter = new TransactionAdapter();
+        recyclerView.setAdapter(transactionAdapter);
+
+
         floatingCTA.setOnClickListener((v) -> {
             navigateToTransaction();
         });
@@ -53,6 +63,7 @@ public class DashboardFragment extends Fragment {
 
     private void findViews(View view) {
         floatingCTA = view.findViewById(R.id.fab);
+        recyclerView = view.findViewById(R.id.completed_transactions);
     }
 
 }
