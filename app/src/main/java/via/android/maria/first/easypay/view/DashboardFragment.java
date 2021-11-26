@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -21,14 +21,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 import via.android.maria.first.easypay.R;
+import via.android.maria.first.easypay.model.Account;
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.view.adapter.TransactionAdapter;
+import via.android.maria.first.easypay.viewmodel.AccountViewModel;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
 public class DashboardFragment extends Fragment {
+    private TextView currentBalance;
     private FloatingActionButton floatingCTA;
     private TransactionAdapter transactionAdapter;
     private TransactionViewModel transactionViewModel;
+    private AccountViewModel accountModel;
     private RecyclerView recyclerView;
 
     public DashboardFragment() {
@@ -48,15 +52,22 @@ public class DashboardFragment extends Fragment {
         findViews(view);
         transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
         transactionViewModel.init();
+        accountModel = new ViewModelProvider(this).get(AccountViewModel.class);
+        accountModel.init();
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+         // TODO comeback when model created
+        //LiveData<Account> account = accountModel.getBalance();
+        accountModel.getBalance().observe(getViewLifecycleOwner(), new AccountBalanceImpl());
+        // TODO check if needed
+        //currentBalance.setText(account.getValue().getBalance());
 
-        LiveData<List<Transaction>> transactions = transactionViewModel.getTransactions();
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         transactionAdapter = new TransactionAdapter();
         recyclerView.setAdapter(transactionAdapter);
         transactionViewModel.getTransactions().observe(getViewLifecycleOwner(), new TransactionObserverImpl());
@@ -74,6 +85,7 @@ public class DashboardFragment extends Fragment {
     private void findViews(View view) {
         floatingCTA = view.findViewById(R.id.fab);
         recyclerView = view.findViewById(R.id.completed_transactions);
+        currentBalance = view.findViewById(R.id.current_balance);
     }
 
     private class TransactionObserverImpl implements Observer<List<Transaction>> {
@@ -81,6 +93,13 @@ public class DashboardFragment extends Fragment {
         public void onChanged(List<Transaction> transactions) {
             transactionAdapter.setTransactionList(transactions);
             transactionAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private class AccountBalanceImpl implements Observer<Account> {
+        @Override
+        public void onChanged(Account account) {
+            currentBalance.setText(account.getBalance());
         }
     }
 }
