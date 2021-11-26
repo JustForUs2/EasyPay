@@ -20,6 +20,7 @@ import java.util.List;
 
 import via.android.maria.first.easypay.model.Transaction;
 
+// TODO create an interface
 public class TransactionRepository {
     private static TransactionRepository instance;
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
@@ -35,16 +36,19 @@ public class TransactionRepository {
         return instance;
     }
 
-    // TODO to be changed with make a transaction
     public void addTransactionToAccount(Transaction transaction, String accountId) {
-        database.collection("account").document()
-                .collection("transactions").add(transaction).
-                addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
+
+        // 1) place money from sender to transaction receiver
+
+        database.collection("users").document("Me0fwbU1rtGyKN2Xequw")
+                .collection("account").document("2HGHb6mOJ2HbCFBseI7i")
+                .collection("transactions").add(transaction)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+            }
+        })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
@@ -52,8 +56,8 @@ public class TransactionRepository {
                     }
                 });
     }
-    // TODO change harcoded ID of user when Auth and Firestore synced
 
+    // TODO change harcoded ID of user when Auth and Firestore synced
     public LiveData<List<Transaction>> getTransactions() {
         database.collection("account").document("DK7U9MNWJGmq2YzdySx3").collection("transactions")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

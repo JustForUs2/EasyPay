@@ -99,13 +99,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void authorization() {
         firebaseAuth = FirebaseAuth.getInstance();
-
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
         if (currentUser != null) {
             String uid = currentUser.getUid();
             Log.d(TAG, uid);
-            addUserWithAccountViewModel.addUserWithAccount(uid);
+            //addUserWithAccountViewModel.addUserWithAccount(uid);
 
             navController.navigate(R.id.dashboardFragment);
         } else {
