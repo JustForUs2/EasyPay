@@ -60,7 +60,9 @@ public class TransactionRepository {
 
     // TODO change harcoded ID of user when Auth and Firestore synced
     public MutableLiveData<List<Transaction>> getTransactions() {
-        database.collection("account").document("DK7U9MNWJGmq2YzdySx3").collection("transactions")
+        database.collection("users").document("Me0fwbU1rtGyKN2Xequw")
+                .collection("account").document("2HGHb6mOJ2HbCFBseI7i")
+                .collection("transactions")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
