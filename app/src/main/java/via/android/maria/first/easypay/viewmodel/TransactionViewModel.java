@@ -5,9 +5,6 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
 import java.util.List;
 
 import via.android.maria.first.easypay.model.Transaction;
@@ -16,7 +13,7 @@ import via.android.maria.first.easypay.repository.TransactionRepository;
 public class TransactionViewModel extends AndroidViewModel {
     private final TransactionRepository transactionRepository;
     private LiveData<List<Transaction>> transactions;
-    private FirebaseAuth firebaseAuth;
+
 
     public TransactionViewModel(Application application) {
         super(application);
@@ -24,7 +21,7 @@ public class TransactionViewModel extends AndroidViewModel {
     }
 
     public void addTransaction(Transaction transaction) {
-        transactionRepository.addTransactionToAccount(transaction, getCurrentUser());
+        transactionRepository.addTransactionToAccount(transaction);
     }
 
     public void init()
@@ -35,13 +32,6 @@ public class TransactionViewModel extends AndroidViewModel {
     public LiveData<List<Transaction>> getTransactions()
     {
         return transactions;
-    }
-
-    private String getCurrentUser()
-    {
-        firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        return currentUser.getUid();
     }
 
 }

@@ -3,7 +3,7 @@ package via.android.maria.first.easypay.model;
 public class User {
     private String uid;
     private String name;
-   // private Account account;
+   private Account account;
 
     public User(String uid) {
         this.uid = uid;
@@ -14,13 +14,13 @@ public class User {
         this.name = name;
     }
 
-    /*
+
     public User(String name, Account account) {
         this.name = name;
         this.account = account;
     }
 
-     */
+
 
     public User() {
     }
@@ -40,7 +40,7 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-/*
+
     public Account getAccount() {
         return account;
     }
@@ -49,5 +49,5 @@ public class User {
         this.account = account;
     }
 
- */
+
 }

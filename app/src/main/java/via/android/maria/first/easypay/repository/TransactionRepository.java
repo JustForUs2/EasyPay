@@ -12,6 +12,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -25,6 +27,7 @@ public class TransactionRepository {
     private static TransactionRepository instance;
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
     private MutableLiveData<List<Transaction>> list = new MutableLiveData<>();
+    private FirebaseAuth firebaseAuth;
 
 
     public TransactionRepository() {
@@ -36,19 +39,18 @@ public class TransactionRepository {
         return instance;
     }
 
-    public void addTransactionToAccount(Transaction transaction, String accountId) {
-
-        // 1) place money from sender to transaction receiver
+    public void addTransactionToAccount(Transaction transaction) {
+        FirebaseUser firebaseUser = getCurrentUser();
 
         database.collection("users").document("Me0fwbU1rtGyKN2Xequw")
                 .collection("account").document("2HGHb6mOJ2HbCFBseI7i")
                 .collection("transactions").add(transaction)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-            }
-        })
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
@@ -91,5 +93,11 @@ public class TransactionRepository {
             }
         });
          */
+    }
+
+    private FirebaseUser getCurrentUser() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        return currentUser;
     }
 }
