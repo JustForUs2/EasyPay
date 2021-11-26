@@ -24,18 +24,13 @@
             app:destination="@id/transaction" />
     </fragment>
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="via.android.maria.first.easypay.view.profile"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/payment"
-        android:name="via.android.maria.first.easypay.view.payment"
-        android:label="fragment_payment"
-        tools:layout="@layout/fragment_payment" />
-    <fragment
         android:id="@+id/transaction"
         android:name="via.android.maria.first.easypay.view.TransactionFragment"
         android:label="fragment_transaction"
         tools:layout="@layout/fragment_transaction" />
+    <fragment
+        android:id="@+id/savedAccounts"
+        android:name="via.android.maria.first.easypay.view.SavedAccounts"
+        android:label="fragment_saved_accounts"
+        tools:layout="@layout/fragment_saved_accounts" />
 </navigation>

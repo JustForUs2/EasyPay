@@ -27,4 +27,16 @@
         <item name="android:tint">@color/white</item>
     </style>
 
+    <style name="TransactionHeading">
+
+    </style>
+
+    <style name="TransactionWithdrawal">
+
+    </style>
+
+    <style name="TransactionDeposit">
+
+    </style>
+
 </resources>
