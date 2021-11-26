@@ -1,6 +1,9 @@
 package via.android.maria.first.easypay.view;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -93,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
         if (currentUser != null) {
+            String uid = currentUser.getUid();
+            Log.d(TAG, uid);
             navController.navigate(R.id.dashboardFragment);
         }
         else {

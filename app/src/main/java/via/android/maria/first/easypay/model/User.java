@@ -1,33 +1,44 @@
 package via.android.maria.first.easypay.model;
 
 public class User {
-    private int id;
-    private String username;
-    private String password;
+    private String uid;
+    private String name;
+    private Account account;
 
-    public User() {}
-
-    public int getId() {
-        return id;
+    public User(String uid, String name) {
+        this.uid = uid;
+        this.name = name;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public User(String name, Account account) {
+        this.name = name;
+        this.account = account;
     }
 
-    public String getUsername() {
-        return username;
+    public User() {
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getUid() {
+        return uid;
     }
 
-    public String getPassword() {
-        return password;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
