@@ -10,7 +10,6 @@ import java.util.List;
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.repository.TransactionRepository;
 
-// TODO check if there was another view model
 public class TransactionViewModel extends AndroidViewModel {
     private final TransactionRepository transactionRepository;
     private LiveData<List<Transaction>> transactions;

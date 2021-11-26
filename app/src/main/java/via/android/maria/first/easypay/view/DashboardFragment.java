@@ -32,9 +32,7 @@ public class DashboardFragment extends Fragment {
     private RecyclerView recyclerView;
 
     public DashboardFragment() {
-        // Required empty public constructor
     }
-
 
     public static DashboardFragment newInstance(String param1, String param2) {
         DashboardFragment fragment = new DashboardFragment();

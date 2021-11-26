@@ -52,6 +52,7 @@ public class TransactionRepository {
                     }
                 });
     }
+    // TODO change harcoded ID of user when Auth and Firestore synced
 
     public LiveData<List<Transaction>> getTransactions() {
         database.collection("account").document("DK7U9MNWJGmq2YzdySx3").collection("transactions")
