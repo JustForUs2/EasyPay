@@ -5,7 +5,6 @@ import static android.content.ContentValues.TAG;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,7 +59,7 @@ public class TransactionRepository {
     }
 
     // TODO change harcoded ID of user when Auth and Firestore synced
-    public LiveData<List<Transaction>> getTransactions() {
+    public MutableLiveData<List<Transaction>> getTransactions() {
         database.collection("account").document("DK7U9MNWJGmq2YzdySx3").collection("transactions")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
