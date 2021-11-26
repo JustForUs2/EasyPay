@@ -41,4 +41,5 @@
     <string name="send">Send</string>
     <string name="recipients">Recipients</string>
     <string name="withdrawal">Withdrawal</string>
+    <string name="saved_recipients">Saved recipients</string>
 </resources>
