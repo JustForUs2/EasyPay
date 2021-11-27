@@ -9,12 +9,12 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
 import via.android.maria.first.easypay.model.Account;
 
@@ -23,6 +23,8 @@ public class AccountRepositoryImpl implements AccountRepository {
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
     private MutableLiveData<List<Account>> accountList = new MutableLiveData<>();
     private MutableLiveData<Account> senderAccount = new MutableLiveData<>();
+
+    Map<String, Object> data = new HashMap<>();
 
     public AccountRepositoryImpl() {
     }
@@ -35,7 +37,33 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public MutableLiveData<Account> getBalance() {
-        database.collection("users").whereEqualTo("uid", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
+        Task<DocumentSnapshot> users = database.collection("users").document("Me0fwbU1rtGyKN2Xequw")
+                .collection("account").document("2HGHb6mOJ2HbCFBseI7i").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot result = task.getResult();
+                    if (result.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + result.getData());
+                        data = result.getData();
+                        Log.d(TAG, "result" + data);
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                }
+            }
+        });
+        String balance = (String) data.get("balance");
+        Account account = new Account();
+        account.setBalance(balance);
+        senderAccount.setValue(account);
+
+        return senderAccount;
+    }
+}
+
+
+/*
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -52,7 +80,8 @@ public class AccountRepositoryImpl implements AccountRepository {
         senderAccount.setValue(accountList.getValue().get(0));
         return senderAccount;
     }
-}
+
+ */
 
 /*
     @Override
