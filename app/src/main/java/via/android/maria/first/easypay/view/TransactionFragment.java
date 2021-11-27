@@ -26,7 +26,6 @@ public class TransactionFragment extends Fragment {
     private TransactionViewModel transactionViewModel;
 
     public TransactionFragment() {
-        // Required empty public constructor
     }
 
 
