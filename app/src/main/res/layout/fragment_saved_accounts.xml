@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.SavedAccounts">
+    tools:context=".view.RecipientList">
 
     <TextView
         style="@style/ListHeaderStyleLarge"
@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/completed_transactions"
+            android:id="@+id/recipients_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/primaryLightColor" />

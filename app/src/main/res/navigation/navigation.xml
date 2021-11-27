@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_transaction" />
     <fragment
         android:id="@+id/savedAccounts"
-        android:name="via.android.maria.first.easypay.view.SavedAccounts"
+        android:name="via.android.maria.first.easypay.view.RecipientList"
         android:label="fragment_saved_accounts"
         tools:layout="@layout/fragment_saved_accounts" />
     <fragment
