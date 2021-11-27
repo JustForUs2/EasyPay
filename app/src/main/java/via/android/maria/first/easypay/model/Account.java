@@ -4,14 +4,43 @@ package via.android.maria.first.easypay.model;
 import java.util.List;
 
 public class Account {
-    private String accountId;
+    private String balance;
     private String accountNumber;
     private List<Transaction> transactions;
+    private List<Recipient> recipients;
 
-    public Account(String accountId, String accountNumber, List<Transaction> transactions) {
-        this.accountId = accountId;
+
+    public Account(String balance, String accountNumber, List<Transaction> transactions, List<Recipient> recipientsList) {
+        this.balance = balance;
         this.accountNumber = accountNumber;
         this.transactions = transactions;
+        this.recipients = recipientsList;
+    }
+
+
+
+    public Account() {
+    }
+
+    public Account(String balance, String accountNumber) {
+        this.balance = balance;
+        this.accountNumber = accountNumber;
+    }
+
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public List<Transaction> getTransactions() {
@@ -22,19 +51,13 @@ public class Account {
         this.transactions = transactions;
     }
 
-    public String getAccountId() {
-        return accountId;
+    public List<Recipient> getRecipients() {
+        return recipients;
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    public void setRecipients(List<Recipient> recipients) {
+        this.recipients = recipients;
     }
 
-    public String getAccountNumber() {
-        return accountNumber;
-    }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
 }

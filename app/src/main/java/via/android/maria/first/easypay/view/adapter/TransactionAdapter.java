@@ -16,12 +16,9 @@ import via.android.maria.first.easypay.model.Transaction;
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
     private List<Transaction> transactionList;
 
-
-
     public void setTransactionList(List<Transaction> transactionList) {
         this.transactionList = transactionList;
     }
-
 
     @NonNull
     @Override

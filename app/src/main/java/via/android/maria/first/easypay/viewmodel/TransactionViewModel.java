@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
@@ -12,15 +13,16 @@ import via.android.maria.first.easypay.repository.TransactionRepository;
 
 public class TransactionViewModel extends AndroidViewModel {
     private final TransactionRepository transactionRepository;
-    private LiveData<List<Transaction>> transactions;
+    private MutableLiveData<List<Transaction>> transactions;
+
 
     public TransactionViewModel(Application application) {
         super(application);
         transactionRepository = TransactionRepository.getInstance();
     }
 
-    public void addTransaction(Transaction transaction, String accountId) {
-        transactionRepository.addTransactionToAccount(transaction, accountId);
+    public void addTransaction(Transaction transaction) {
+        transactionRepository.addTransactionToAccount(transaction);
     }
 
     public void init()

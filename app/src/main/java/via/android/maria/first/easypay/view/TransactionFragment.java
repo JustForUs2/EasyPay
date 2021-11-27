@@ -23,7 +23,7 @@ import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 public class TransactionFragment extends Fragment {
     private EditText amount, sortCode, accountNumber, transferName;
     private Button sendButton;
-    TransactionViewModel transactionViewModel;
+    private TransactionViewModel transactionViewModel;
 
     public TransactionFragment() {
         // Required empty public constructor
@@ -55,6 +55,7 @@ public class TransactionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // TODO cover errors when fields empty - extract method if possible
         sendButton.setOnClickListener((v) -> {
 
             Transaction transaction = new Transaction();
@@ -65,22 +66,7 @@ public class TransactionFragment extends Fragment {
             transaction.setTransferName(transferName.getText().toString());
 
             // TODO here ID is hardcoded - needs to be taken from logged in user's account
-            transactionViewModel.addTransaction(transaction, "WoFRKQTWczVOaFzzUF96");
-        });
-    }
-
-    // TODO extract onClick is possible
-    public void sendTransaction() {
-        sendButton.setOnClickListener((v) -> {
-
-            Transaction transaction = new Transaction();
-            transaction.setAmount(amount.getText().toString());
-            transaction.setAccountNumber(accountNumber.getText().toString());
-            transaction.setSortCode(sortCode.getText().toString());
-            transaction.setTransferName(transferName.getText().toString());
-
-            // TODO here ID is hardcoded - needs to be taken from logged in user's account
-            transactionViewModel.addTransaction(transaction, "WoFRKQTWczVOaFzzUF96");
+            transactionViewModel.addTransaction(transaction);
         });
     }
 
