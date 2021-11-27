@@ -10,19 +10,23 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import via.android.maria.first.easypay.R;
+import via.android.maria.first.easypay.model.Recipient;
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
 
+// FRAGMENT A
 public class MakePaymentFragment extends Fragment {
     private EditText amount, transferDescription, selectedRecipient;
     private Button sendCTA, selectCTA;
     private TransactionViewModel transactionViewModel;
+    private Recipient bundleSerializableRecipient;
 
     public MakePaymentFragment() {
     }
@@ -36,9 +40,14 @@ public class MakePaymentFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getParentFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
+                bundleSerializableRecipient = (Recipient) bundle.getSerializable("bundleKey");
+            }
+        });
     }
 
     @Override
@@ -65,9 +74,9 @@ public class MakePaymentFragment extends Fragment {
             Transaction transaction = new Transaction();
 
             transaction.setAmount(amount.getText().toString());
-            //transaction.setAccountNumber(accountNumber.getText().toString());
-            //transaction.setSortCode(sortCode.getText().toString());
-            //transaction.setTransferName(transferName.getText().toString());
+            transaction.setAccountNumber(bundleSerializableRecipient.getAccountNumber());
+            transaction.setSortCode(bundleSerializableRecipient.getSortCode());
+            transaction.setTransferName(bundleSerializableRecipient.getOwnerName());
             transaction.setDescription(transferDescription.getText().toString());
 
             transactionViewModel.addTransaction(transaction);

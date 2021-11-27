@@ -17,25 +17,25 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/sort_code"
             android:layout_width="110dp"
             android:layout_height="match_parent"
             android:layout_marginRight="15dp"
             android:hint="@string/sort_code">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sort_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/account_num"
             android:layout_width="235dp"
             android:layout_height="match_parent"
             android:hint="@string/account_num">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/account_num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -53,12 +53,12 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Name">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -111,7 +111,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/send_transfer"
+        android:id="@+id/add_recipient_for_transfer"
         android:layout_width="226dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
