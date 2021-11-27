@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
+    android:id="@+id/containerRecipient"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FFFFFF">
 
-    <TextView
-        android:id="@+id/name_recipient"
-        android:layout_width="0dp"
+    <ImageView
+        android:id="@+id/iconRecipient"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Name of recipient" />
+        app:srcCompat="@drawable/ic_transaction" />
+
+    <TextView
+        android:id="@+id/recipientName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="RecipientName" />
 </LinearLayout>

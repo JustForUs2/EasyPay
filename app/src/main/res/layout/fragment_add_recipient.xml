@@ -8,7 +8,7 @@
     tools:context=".view.TransactionFragment">
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
+        android:id="@+id/linearLayoutAddRecipient"
         android:layout_width="398dp"
         android:layout_height="103dp"
         android:background="@color/primaryColor"
@@ -18,84 +18,55 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
-        android:theme="@style/Theme.MaterialComponents.DayNight"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:theme="@style/Theme.MaterialComponents.DayNight">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:text="@string/pay"
+            android:text="Add recipient"
             android:textColor="@color/white"
             android:textSize="40sp" />
 
     </LinearLayout>
 
     <EditText
-        android:id="@+id/transfer_amount"
+        android:id="@+id/recipient_account_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/amount"
-        app:layout_constraintBottom_toTopOf="@+id/transfer_account_number"
+        android:hint="@string/account_number"
+        app:layout_constraintBottom_toTopOf="@+id/recipient_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutAddRecipient" />
 
     <EditText
-        android:id="@+id/transfer_description"
+        android:id="@+id/recipient_sort_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/sort_code"
         android:inputType="textPersonName"
-        android:hint="@string/description"
         app:layout_constraintBottom_toTopOf="@+id/send"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transfer_name" />
+        app:layout_constraintTop_toBottomOf="@+id/recipient_name" />
 
     <EditText
-        android:id="@+id/transfer_name"
+        android:id="@+id/recipient_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/name"
-        app:layout_constraintBottom_toTopOf="@+id/transfer_description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transfer_code" />
-
-    <EditText
-        android:id="@+id/transfer_account_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPersonName"
-        android:hint="@string/account_number"
-        app:layout_constraintBottom_toTopOf="@+id/transfer_code"
+        app:layout_constraintBottom_toTopOf="@+id/recipient_sort_code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transfer_amount" />
-
-    <EditText
-        android:id="@+id/transfer_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/sort_code"
-        app:layout_constraintBottom_toTopOf="@+id/transfer_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transfer_account_number" />
+        app:layout_constraintTop_toBottomOf="@+id/recipient_account_number" />
 
     <Button
         android:id="@+id/send"

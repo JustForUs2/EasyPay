@@ -34,12 +34,14 @@
     <string name="password">password</string>
     <string name="logout">Logout</string>
     <string name="amount">Amount</string>
-    <string name="sort_code">sort code</string>
-    <string name="acount_number">Acount number</string>
+    <string name="sort_code">Sort code</string>
+    <string name="account_number">Acount number</string>
     <string name="name">Name</string>
     <string name="button">Button</string>
     <string name="send">Send</string>
     <string name="recipients">Recipients</string>
     <string name="withdrawal">Withdrawal</string>
     <string name="saved_recipients">Saved recipients</string>
+    <string name="pay">Pay</string>
+    <string name="description">Description</string>
 </resources>

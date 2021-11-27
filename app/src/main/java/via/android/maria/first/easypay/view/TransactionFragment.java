@@ -21,12 +21,11 @@ import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
 public class TransactionFragment extends Fragment {
-    private EditText amount, sortCode, accountNumber, transferName;
+    private EditText amount, sortCode, accountNumber, transferName, transferDescription;
     private Button sendButton;
     private TransactionViewModel transactionViewModel;
 
     public TransactionFragment() {
-        // Required empty public constructor
     }
 
 
@@ -64,6 +63,7 @@ public class TransactionFragment extends Fragment {
             transaction.setAccountNumber(accountNumber.getText().toString());
             transaction.setSortCode(sortCode.getText().toString());
             transaction.setTransferName(transferName.getText().toString());
+            transaction.setDescription(transferDescription.getText().toString());
 
             // TODO here ID is hardcoded - needs to be taken from logged in user's account
             transactionViewModel.addTransaction(transaction);
@@ -81,5 +81,6 @@ public class TransactionFragment extends Fragment {
         accountNumber = view.findViewById(R.id.transfer_account_number);
         transferName = view.findViewById(R.id.transfer_name);
         sendButton = view.findViewById(R.id.send);
+        transferDescription = view.findViewById(R.id.transfer_description);
     }
 }
