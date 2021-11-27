@@ -24,7 +24,6 @@ import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.model.Account;
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.view.adapter.TransactionAdapter;
-import via.android.maria.first.easypay.viewmodel.AccountViewModel;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
 public class DashboardFragment extends Fragment {
@@ -32,7 +31,7 @@ public class DashboardFragment extends Fragment {
     private FloatingActionButton floatingCTA;
     private TransactionAdapter transactionAdapter;
     private TransactionViewModel transactionViewModel;
-    private AccountViewModel accountModel;
+    //private AccountViewModel accountModel;
     private RecyclerView recyclerView;
 
     public DashboardFragment() {
@@ -52,8 +51,8 @@ public class DashboardFragment extends Fragment {
         findViews(view);
         transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
         transactionViewModel.init();
-        accountModel = new ViewModelProvider(this).get(AccountViewModel.class);
-        accountModel.init();
+        //accountModel = new ViewModelProvider(this).get(AccountViewModel.class);
+        //accountModel.init();
         return view;
     }
 
@@ -62,7 +61,7 @@ public class DashboardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
          // TODO comeback when model created
         //LiveData<Account> account = accountModel.getBalance();
-        accountModel.getBalance().observe(getViewLifecycleOwner(), new AccountBalanceImpl());
+        //accountModel.getBalance().observe(getViewLifecycleOwner(), new AccountBalanceImpl());
         // TODO check if needed
         //currentBalance.setText(account.getValue().getBalance());
 

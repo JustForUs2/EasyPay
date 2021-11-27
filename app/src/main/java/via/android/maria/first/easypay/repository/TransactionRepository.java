@@ -89,7 +89,7 @@ public class TransactionRepository {
                 });
     }
 
-    // TODO change harcoded ID of user when Auth and Firestore synced
+    // TODO change hardcoded ID of user when Auth and Firestore synced
     public MutableLiveData<List<Transaction>> getTransactions() {
         database.collection("users").document(Constants.USER_SENDER_DOC_ID)
                 .collection("account").document(Constants.ACCOUNT_SENDER_DOC_ID)
