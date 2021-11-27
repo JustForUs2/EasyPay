@@ -26,6 +26,7 @@ import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.view.adapter.TransactionAdapter;
 import via.android.maria.first.easypay.viewmodel.AccountViewModel;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
+import via.android.maria.first.easypay.viewmodel.TransferViewModel;
 
 public class DashboardFragment extends Fragment {
     private TextView currentBalance;
@@ -61,7 +62,6 @@ public class DashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         accountModel.getBalance().observe(getViewLifecycleOwner(), new AccountBalanceImpl());
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         transactionAdapter = new TransactionAdapter();
         recyclerView.setAdapter(transactionAdapter);

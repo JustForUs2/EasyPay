@@ -26,17 +26,19 @@ import com.google.firebase.auth.FirebaseUser;
 
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.viewmodel.AddUserWithAccountViewModel;
+import via.android.maria.first.easypay.viewmodel.TransferViewModel;
 
 public class MainActivity extends AppCompatActivity {
-    NavController navController;
-    AppBarConfiguration appBarConfiguration;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    BottomNavigationView bottomNavigationView;
-    Toolbar toolbar;
-    FirebaseAuth firebaseAuth;
+    private NavController navController;
+    private AppBarConfiguration appBarConfiguration;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private BottomNavigationView bottomNavigationView;
+    private Toolbar toolbar;
+    private FirebaseAuth firebaseAuth;
     // TODO temp
-    AddUserWithAccountViewModel addUserWithAccountViewModel;
+    private AddUserWithAccountViewModel addUserWithAccountViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,4 +1,4 @@
-package via.android.maria.first.easypay.repository;
+package via.android.maria.first.easypay.repository.transaction.repository;
 
 import static android.content.ContentValues.TAG;
 
@@ -24,51 +24,22 @@ import via.android.maria.first.easypay.model.Account;
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.utils.Constants;
 
-// TODO create an interface
-public class TransactionRepository {
-    private static TransactionRepository instance;
+public class TransactionRepositoryImpl implements TransactionRepository{
+    private static TransactionRepositoryImpl instance;
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
     private MutableLiveData<List<Transaction>> list = new MutableLiveData<>();
     private FirebaseAuth firebaseAuth;
-    private Account senderAccount;
 
-
-    public TransactionRepository() {
+    public TransactionRepositoryImpl() {
     }
 
-    public static TransactionRepository getInstance() {
+    public static TransactionRepositoryImpl getInstance() {
         if (instance == null)
-            instance = new TransactionRepository();
+            instance = new TransactionRepositoryImpl();
         return instance;
     }
 
-    // ################### create transaction
-    // 1) Alex balance
-    public void getSenderBalance()
-    {
-        DocumentReference docRef = database.collection("accounts")
-                .document(Constants.ACCOUNT_SENDER_DOC_ID);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot documentSnapshot = task.getResult();
-                 senderAccount = documentSnapshot.toObject(Account.class);
-            }
-        });
-        Log.d(TAG, senderAccount.getBalance());
-    }
-    // 2) Substract amount to send from Alex balance
-    // 3) Overwrite new balance of Alex to Db
-    // 4) Write new transaction to Alex's list with description, name sent to and - amount
-
-
-    // 1) Mark balance
-    // 2) add amount to Mark balance
-    // 3) Overwrite Mark's balance
-    // 4) Write a new transaction to lists of trans of Mark - name of who send, amount received, description
-
-
+    @Override
     public void addTransactionToAccount(Transaction transaction) {
         FirebaseUser firebaseUser = getCurrentUser();
 
@@ -90,6 +61,7 @@ public class TransactionRepository {
     }
 
     // TODO change hardcoded ID of user when Auth and Firestore synced
+    @Override
     public MutableLiveData<List<Transaction>> getTransactions() {
         database.collection("users").document(Constants.USER_SENDER_DOC_ID)
                 .collection("account").document(Constants.ACCOUNT_SENDER_DOC_ID)
@@ -109,22 +81,6 @@ public class TransactionRepository {
         });
 
         return list;
-
-                /*
-        database.collection("account").document("transaction-id-here").collection("transactions")
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d(TAG, document.getId() + " => " + document.getData());
-                    }
-                } else {
-                    Log.w(TAG, "Error getting documents.", task.getException());
-                }
-            }
-        });
-         */
     }
 
     private FirebaseUser getCurrentUser() {

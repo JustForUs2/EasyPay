@@ -1,4 +1,4 @@
-package via.android.maria.first.easypay.repository;
+package via.android.maria.first.easypay.repository.recipient.repository;
 
 import androidx.lifecycle.MutableLiveData;
 

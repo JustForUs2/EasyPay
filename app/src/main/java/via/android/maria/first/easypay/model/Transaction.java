@@ -1,6 +1,7 @@
 package via.android.maria.first.easypay.model;
 
-import com.google.firebase.database.PropertyName;
+
+import com.google.firebase.firestore.PropertyName;
 
 public class Transaction {
     private String accountNumber;
