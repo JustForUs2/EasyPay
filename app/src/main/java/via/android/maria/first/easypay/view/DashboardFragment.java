@@ -74,7 +74,7 @@ public class DashboardFragment extends Fragment {
 
     private void navigateToTransaction() {
         NavController navController = NavHostFragment.findNavController(this);
-        navController.navigate(R.id.transaction);
+        navController.navigate(R.id.makePayment);
     }
 
     private void findViews(View view) {
