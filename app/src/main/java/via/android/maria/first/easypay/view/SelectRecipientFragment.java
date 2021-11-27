@@ -9,6 +9,8 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -59,8 +61,15 @@ public class SelectRecipientFragment extends Fragment {
 
                 result.putSerializable("bundleKey", recipient);
                 getParentFragmentManager().setFragmentResult("requestKey", result);
+
+                navigateToSendTransaction();
             }
         });
+    }
+
+    private void navigateToSendTransaction() {
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.navigate(R.id.makePayment);
     }
 
     private void findViews(View view) {

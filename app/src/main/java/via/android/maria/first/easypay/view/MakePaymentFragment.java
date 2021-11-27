@@ -46,8 +46,31 @@ public class MakePaymentFragment extends Fragment {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
                 bundleSerializableRecipient = (Recipient) bundle.getSerializable("bundleKey");
+                selectedRecipient.setText(bundleSerializableRecipient.getOwnerName());
             }
         });
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("Amount", amount.getText().toString());
+        outState.putString("Description", transferDescription.getText().toString());
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null){
+            String amount = savedInstanceState.getString("Amount");
+            this.amount.setText(amount);
+        }
+
+        if (savedInstanceState != null)
+        {
+            String description = savedInstanceState.getString("Description");
+            transferDescription.setText(description);
+        }
     }
 
     @Override
@@ -56,6 +79,7 @@ public class MakePaymentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_make_payment, container, false);
         findViews(view);
         transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
+
         return view;
     }
 
