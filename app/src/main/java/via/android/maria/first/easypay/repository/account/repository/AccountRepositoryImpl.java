@@ -68,7 +68,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public MutableLiveData<Account> getReceiverBalance() {
-        database.collection("users").document(Constants.USER_RECEIVER_DOC_ID)
+       /* database.collection("users").document(Constants.USER_RECEIVER_DOC_ID)
                 .collection("account").document(Constants.ACCOUNT_RECEIVER_DOC_ID)
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -86,13 +86,13 @@ public class AccountRepositoryImpl implements AccountRepository {
             }
         });
         String balance = (String) receiverBalanceData.get("balance");
-        String accountNumber = (String) receiverBalanceData.get("accountNumber");
         Account account = new Account();
         account.setBalance(balance);
-        account.setAccountNumber(accountNumber);
         receiverAccount.setValue(account);
-
         return receiverAccount;
+
+        */
+        return null;
     }
 
     @Override
@@ -111,6 +111,23 @@ public class AccountRepositoryImpl implements AccountRepository {
                 Log.d(TAG, "Updated!");
             }
         });
+    }
+
+    @Override
+    public void updateReceiverAfterTransaction(String newBalance) {
+        Map<String, Object> balance = new HashMap<>();
+        balance.put("balance", newBalance);
+        database.collection("users")
+                .document(Constants.USER_RECEIVER_DOC_ID)
+                .collection("account")
+                .document(Constants.ACCOUNT_RECEIVER_DOC_ID)
+                .update(balance)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d(TAG, "Updated!");
+                    }
+                });
     }
 }
 
