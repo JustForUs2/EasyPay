@@ -9,15 +9,21 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.List;
+
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.model.Recipient;
+import via.android.maria.first.easypay.view.adapter.RecipientAdapter;
 import via.android.maria.first.easypay.viewmodel.RecipientViewModel;
 
 // FRAGMENT B
@@ -26,6 +32,8 @@ public class SelectRecipientFragment extends Fragment {
     private TextInputEditText recipientName, recipientAccountNum, recipientSortCode;
     private SwitchMaterial switchMaterial;
     private RecipientViewModel recipientViewModel;
+    private RecipientAdapter recipientAdapter;
+    private RecyclerView recyclerView;
 
     public SelectRecipientFragment() {
     }
@@ -47,6 +55,7 @@ public class SelectRecipientFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_select_recipient, container, false);
         recipientViewModel = new ViewModelProvider(this).get(RecipientViewModel.class);
+        recipientViewModel.init();
         findViews(view);
         return view;
     }
@@ -54,6 +63,14 @@ public class SelectRecipientFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recipientAdapter = new RecipientAdapter();
+        recyclerView.setAdapter(recipientAdapter);
+
+        if (recipientViewModel.getRecipients() != null)
+        {
+            recipientViewModel.getRecipients().observe(getViewLifecycleOwner(), new RecipientObserverImpl());
+        }
 
         addRecipientCTA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,5 +106,14 @@ public class SelectRecipientFragment extends Fragment {
         recipientAccountNum = view.findViewById(R.id.account_num);
         recipientSortCode = view.findViewById(R.id.sort_code);
         switchMaterial = view.findViewById(R.id.switch1);
+        recyclerView = view.findViewById(R.id.recipients_list);
+    }
+
+    private class RecipientObserverImpl implements Observer<List<Recipient>> {
+        @Override
+        public void onChanged(List<Recipient> recipients) {
+            recipientAdapter.setRecipientList(recipients);
+            recipientAdapter.notifyDataSetChanged();
+        }
     }
 }
