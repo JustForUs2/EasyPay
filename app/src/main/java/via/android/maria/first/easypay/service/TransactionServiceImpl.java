@@ -24,7 +24,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void completeTransaction(Transaction transaction) {
         updateBalanceAfterTransaction(transaction);
-        updateReceiverBalanceAfterTransaction(transaction);
+        //updateReceiverBalanceAfterTransaction(transaction);
         registerSenderTransaction(transaction);
         registerReceiverTransaction(transaction);
     }

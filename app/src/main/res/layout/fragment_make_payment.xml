@@ -54,7 +54,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/selected_recipient"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:inputType="textImeMultiLine"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +83,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/amount_to_transfer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:inputType="textImeMultiLine"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,7 +99,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/description_of_transfer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:inputType="textImeMultiLine"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
