@@ -68,8 +68,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public MutableLiveData<Account> getReceiverBalance() {
-       /* database.collection("users").document(Constants.USER_RECEIVER_DOC_ID)
-                .collection("account").document(Constants.ACCOUNT_RECEIVER_DOC_ID)
+        database.collection("users").document("E5ZNdWn1xZW9ELmhVKPx")
+                .collection("account").document("bVMiJ8CWPXZICQrLgNi2")
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -90,9 +90,6 @@ public class AccountRepositoryImpl implements AccountRepository {
         account.setBalance(balance);
         receiverAccount.setValue(account);
         return receiverAccount;
-
-        */
-        return null;
     }
 
     @Override
