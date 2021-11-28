@@ -7,8 +7,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import via.android.maria.first.easypay.model.Account;
-import via.android.maria.first.easypay.repository.AccountRepository;
-import via.android.maria.first.easypay.repository.AccountRepositoryImpl;
+import via.android.maria.first.easypay.repository.account.repository.AccountRepository;
+import via.android.maria.first.easypay.repository.account.repository.AccountRepositoryImpl;
 
 public class AccountViewModel extends AndroidViewModel {
     private MutableLiveData<Account> account;
@@ -19,13 +19,12 @@ public class AccountViewModel extends AndroidViewModel {
         repository = AccountRepositoryImpl.getInstance();
     }
 
-    public void init()
-    {
-        this.account = repository.getBalance();
+    public void init() {
+        this.account = repository.getSenderBalance();
     }
 
-    public LiveData<Account> getBalance()
-    {
+    public LiveData<Account> getBalance() {
         return account;
     }
+
 }

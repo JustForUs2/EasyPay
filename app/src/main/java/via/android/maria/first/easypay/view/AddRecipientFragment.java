@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.model.Recipient;
@@ -57,8 +59,14 @@ public class AddRecipientFragment extends Fragment {
             recipient.setSortCode(sortCode.getText().toString());
 
             recipientViewModel.addRecipient(recipient);
+            navigateToRecipients();
         });
 
+    }
+
+    private void navigateToRecipients() {
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.navigate(R.id.savedAccounts);
     }
 
     private void findViews(View view) {

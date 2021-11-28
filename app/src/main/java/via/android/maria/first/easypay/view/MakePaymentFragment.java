@@ -104,6 +104,8 @@ public class MakePaymentFragment extends Fragment {
             transaction.setDescription(transferDescription.getText().toString());
 
             transactionViewModel.addTransaction(transaction);
+            navigateToDashboard();
+
         });
     }
 

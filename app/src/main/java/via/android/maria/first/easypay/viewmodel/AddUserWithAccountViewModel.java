@@ -7,8 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 
 import via.android.maria.first.easypay.model.Account;
 import via.android.maria.first.easypay.model.User;
-import via.android.maria.first.easypay.repository.AddUserWithAccountRepository;
-import via.android.maria.first.easypay.repository.AddUserWithAccountRepositoryImpl;
+import via.android.maria.first.easypay.repository.add.user.with.account.AddUserWithAccountRepository;
+import via.android.maria.first.easypay.repository.add.user.with.account.AddUserWithAccountRepositoryImpl;
 
 public class AddUserWithAccountViewModel extends AndroidViewModel {
     private AddUserWithAccountRepository repository;
