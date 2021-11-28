@@ -38,4 +38,14 @@
         android:name="via.android.maria.first.easypay.view.AddRecipientFragment"
         android:label="fragment_add_recipient"
         tools:layout="@layout/fragment_add_recipient" />
+    <fragment
+        android:id="@+id/makePayment"
+        android:name="via.android.maria.first.easypay.view.MakePaymentFragment"
+        android:label="fragment_make_payment"
+        tools:layout="@layout/fragment_make_payment" />
+    <fragment
+        android:id="@+id/selectRecipient"
+        android:name="via.android.maria.first.easypay.view.SelectRecipientFragment"
+        android:label="fragment_select_recipient"
+        tools:layout="@layout/fragment_select_recipient" />
 </navigation>
