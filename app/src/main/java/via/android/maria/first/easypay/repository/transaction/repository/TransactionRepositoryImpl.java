@@ -24,7 +24,7 @@ import via.android.maria.first.easypay.model.Account;
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.utils.Constants;
 
-public class TransactionRepositoryImpl implements TransactionRepository{
+public class TransactionRepositoryImpl implements TransactionRepository {
     private static TransactionRepositoryImpl instance;
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
     private MutableLiveData<List<Transaction>> list = new MutableLiveData<>();
@@ -40,8 +40,7 @@ public class TransactionRepositoryImpl implements TransactionRepository{
     }
 
     @Override
-    public void addTransactionToAccount(Transaction transaction) {
-        FirebaseUser firebaseUser = getCurrentUser();
+    public void addTransactionToSenderAccount(Transaction transaction) {
 
         database.collection("users").document(Constants.USER_SENDER_DOC_ID)
                 .collection("account").document(Constants.ACCOUNT_SENDER_DOC_ID)
@@ -60,7 +59,26 @@ public class TransactionRepositoryImpl implements TransactionRepository{
                 });
     }
 
-    // TODO change hardcoded ID of user when Auth and Firestore synced
+    @Override
+    public void addTransactionToReceiverAccount(Transaction transaction) {
+
+        database.collection("users").document(Constants.USER_RECEIVER_DOC_ID)
+                .collection("account").document(Constants.ACCOUNT_RECEIVER_DOC_ID)
+                .collection("transactions").add(transaction)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+    }
+
     @Override
     public MutableLiveData<List<Transaction>> getTransactions() {
         database.collection("users").document(Constants.USER_SENDER_DOC_ID)

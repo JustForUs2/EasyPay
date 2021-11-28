@@ -26,7 +26,6 @@ import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.view.adapter.TransactionAdapter;
 import via.android.maria.first.easypay.viewmodel.AccountViewModel;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
-import via.android.maria.first.easypay.viewmodel.TransferViewModel;
 
 public class DashboardFragment extends Fragment {
     private TextView currentBalance;

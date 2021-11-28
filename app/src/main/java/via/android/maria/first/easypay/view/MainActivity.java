@@ -26,7 +26,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.viewmodel.AddUserWithAccountViewModel;
-import via.android.maria.first.easypay.viewmodel.TransferViewModel;
 
 public class MainActivity extends AppCompatActivity {
     private NavController navController;

@@ -8,28 +8,28 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
-import via.android.maria.first.easypay.model.Account;
 import via.android.maria.first.easypay.model.Transaction;
-import via.android.maria.first.easypay.repository.transaction.repository.TransactionRepository;
-import via.android.maria.first.easypay.repository.transaction.repository.TransactionRepositoryImpl;
+import via.android.maria.first.easypay.service.TransactionService;
+import via.android.maria.first.easypay.service.TransactionServiceImpl;
 
 public class TransactionViewModel extends AndroidViewModel {
-    private final TransactionRepository transactionRepository;
+    private final TransactionService transactionService;
     private MutableLiveData<List<Transaction>> transactions;
 
 
     public TransactionViewModel(Application application) {
         super(application);
-        transactionRepository = TransactionRepositoryImpl.getInstance();
+        transactionService = new TransactionServiceImpl();
     }
 
+    // TODO come back and place service
     public void addTransaction(Transaction transaction) {
-        transactionRepository.addTransactionToAccount(transaction);
+        transactionService.completeTransaction(transaction);
     }
 
     public void init()
     {
-        this.transactions = transactionRepository.getTransactions();
+        this.transactions = transactionService.getTransactions();
     }
 
     public LiveData<List<Transaction>> getTransactions()

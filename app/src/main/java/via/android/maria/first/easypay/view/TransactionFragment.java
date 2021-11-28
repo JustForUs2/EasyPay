@@ -19,13 +19,11 @@ import org.jetbrains.annotations.NotNull;
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
-import via.android.maria.first.easypay.viewmodel.TransferViewModel;
 
 public class TransactionFragment extends Fragment {
     private EditText amount, sortCode, accountNumber, transferName, transferDescription;
     private Button sendButton;
     private TransactionViewModel transactionViewModel;
-    private TransferViewModel transferViewModel;
 
     public TransactionFragment() {
     }
@@ -49,7 +47,6 @@ public class TransactionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_transaction, container, false);
         findViews(view);
         transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
-        transferViewModel = new ViewModelProvider(this).get(TransferViewModel.class);
         return view;
     }
 
@@ -70,9 +67,6 @@ public class TransactionFragment extends Fragment {
 
             // TODO here ID is hardcoded - needs to be taken from logged in user's account
             transactionViewModel.addTransaction(transaction);
-            transferViewModel.updateBalanceAfterTransaction(transaction);
-           // transferViewModel.updateReceiverBalanceAfterTransaction(transaction);
-
         });
     }
 
