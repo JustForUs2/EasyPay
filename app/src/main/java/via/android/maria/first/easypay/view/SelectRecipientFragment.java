@@ -72,6 +72,8 @@ public class SelectRecipientFragment extends Fragment {
             recipientViewModel.getRecipients().observe(getViewLifecycleOwner(), new RecipientObserverImpl());
         }
 
+
+
         addRecipientCTA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
