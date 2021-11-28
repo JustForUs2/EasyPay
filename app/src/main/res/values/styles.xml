@@ -33,6 +33,10 @@
         <item name="android:tint">@color/white</item>
     </style>
 
+    <style name="DrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/primaryColor</item>
+    </style>
+
     <style name="TransactionHeading">
 
     </style>

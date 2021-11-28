@@ -1,9 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    >
 
-    <group android:id="@+id/tools">
-
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_type_chart"
             android:icon="@drawable/ic_baseline_branding_watermark_24"
@@ -16,10 +18,12 @@
     </group>
 
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_signout"
             android:icon="@drawable/ic_baseline_logout_24"
-            android:title="@string/logout"/>
+            android:title="@string/logout" />
     </group>
 </menu>

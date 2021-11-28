@@ -50,4 +50,6 @@
     <string name="cancel">Cancel</string>
     <string name="approve">approve</string>
     <string name="add_recipient">Add recipient</string>
+    <string name="header_title">Welcome</string>
+    <string name="header_text">name</string>
 </resources>
