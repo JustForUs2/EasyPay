@@ -9,14 +9,16 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="294dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="24dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="110dp"
             android:layout_height="match_parent"
             android:layout_marginRight="15dp"
@@ -27,13 +29,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
-                android:maxLines="1"
-                android:inputType="textImeMultiLine"/>
+                android:inputType="textImeMultiLine"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="235dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="168dp"
             android:layout_height="match_parent"
             android:hint="@string/account_num">
 
@@ -42,8 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
-                android:maxLines="1"
-                android:inputType="textImeMultiLine"/>
+                android:inputType="textImeMultiLine"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
@@ -52,13 +55,14 @@
         android:id="@+id/linearLayout7"
         android:layout_width="296dp"
         android:layout_height="52dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="Name">
@@ -68,8 +72,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
-                android:maxLines="1"
-                android:inputType="textImeMultiLine"/>
+                android:inputType="textImeMultiLine"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
@@ -101,28 +105,28 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="405dp"
-        android:layout_height="146dp"
-        android:layout_marginTop="8dp"
-        android:background="#F57C00"
+        android:layout_width="396dp"
+        android:layout_height="208dp"
+        android:layout_marginTop="32dp"
+        android:background="#FFFFFF"
+        android:fadeScrollbars="false"
+        android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recipients_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:backgroundTint="#FBC02D" />
+            android:layout_height="match_parent" />
     </ScrollView>
 
     <Button
         android:id="@+id/add_recipient_for_transfer"
         android:layout_width="226dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="Add recipient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -119,7 +119,7 @@ public class SelectRecipientFragment extends Fragment implements RecipientAdapte
         recipientName.setText(recipient.getOwnerName());
         recipientAccountNum.setText(recipient.getAccountNumber());
         recipientSortCode.setText(recipient.getSortCode());
-        Toast.makeText(getContext(), "Item clicked" + clickedItemIndex, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), recipient.getOwnerName() + " added", Toast.LENGTH_SHORT).show();
     }
 
     private class RecipientObserverImpl implements Observer<List<Recipient>> {
