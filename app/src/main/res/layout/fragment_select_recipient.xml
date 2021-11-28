@@ -65,7 +65,7 @@
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-    <Switch
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/switch1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
         app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+         />
 
     <TextView
         android:id="@+id/textView7"
