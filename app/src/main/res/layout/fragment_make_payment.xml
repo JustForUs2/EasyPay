@@ -39,27 +39,24 @@
 
     <LinearLayout
         android:id="@+id/linearLayout8"
-        android:layout_width="391dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="208dp"
         android:layout_marginTop="1dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        tools:layout_editor_absoluteX="1dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
+            android:id="@+id/selected_recipient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/selected_recipient">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/selected_recipient"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
-                android:maxLines="1"
-                android:inputType="textImeMultiLine"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/selected_recipient"
+            android:imeOptions="actionDone"
+            android:inputType="textImeMultiLine"
+            android:maxLines="1" />
 
         <Button
             android:id="@+id/select_recipient_for_transfer"
@@ -68,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/select_recipient"
+            app:icon="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toTopOf="@+id/send_transfer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -76,7 +74,8 @@
             app:layout_constraintVertical_bias="0.17000002" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="@string/amount">
 
@@ -85,14 +84,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
-                android:maxLines="1"
-                android:inputType="textImeMultiLine"/>
+                android:inputType="textImeMultiLine"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="@string/description">
 
@@ -101,24 +101,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
-                android:maxLines="1"
-                android:inputType="textImeMultiLine"/>
+                android:inputType="textImeMultiLine"
+                android:maxLines="1" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
     </LinearLayout>
-
 
     <Button
         android:id="@+id/send_transfer"
         android:layout_width="226dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/send"
+        android:layout_marginBottom="58dp"
+        android:text="@string/approve"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/cancel"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="226dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

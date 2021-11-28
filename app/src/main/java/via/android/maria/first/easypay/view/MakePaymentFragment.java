@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,8 +24,9 @@ import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
 // FRAGMENT A
 public class MakePaymentFragment extends Fragment {
-    private EditText amount, transferDescription, selectedRecipient;
-    private Button sendCTA, selectCTA;
+    private EditText amount, transferDescription;
+    private TextView selectedRecipient;
+    private Button sendCTA, selectCTA, cancelCTA;
     private TransactionViewModel transactionViewModel;
     private Recipient bundleSerializableRecipient;
 
@@ -107,6 +109,10 @@ public class MakePaymentFragment extends Fragment {
             navigateToDashboard();
 
         });
+
+        cancelCTA.setOnClickListener((v) -> {
+            navigateToDashboard();
+        });
     }
 
     private void navigateToSelectRecipient() {
@@ -125,5 +131,6 @@ public class MakePaymentFragment extends Fragment {
         selectedRecipient = view.findViewById(R.id.selected_recipient);
         sendCTA = view.findViewById(R.id.send_transfer);
         selectCTA = view.findViewById(R.id.select_recipient_for_transfer);
+        cancelCTA = view.findViewById(R.id.cancel);
     }
 }
