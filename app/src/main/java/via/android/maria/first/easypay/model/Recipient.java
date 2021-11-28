@@ -1,6 +1,8 @@
 package via.android.maria.first.easypay.model;
 
-public class Recipient {
+import java.io.Serializable;
+
+public class Recipient implements Serializable {
     private String accountNumber;
     private String sortCode;
     private String ownerName;

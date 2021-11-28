@@ -22,7 +22,6 @@ public class TransactionViewModel extends AndroidViewModel {
         transactionService = new TransactionServiceImpl();
     }
 
-    // TODO come back and place service
     public void addTransaction(Transaction transaction) {
         transactionService.completeTransaction(transaction);
     }

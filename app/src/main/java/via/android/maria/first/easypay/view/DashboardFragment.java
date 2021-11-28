@@ -61,6 +61,7 @@ public class DashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         accountModel.getBalance().observe(getViewLifecycleOwner(), new AccountBalanceImpl());
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         transactionAdapter = new TransactionAdapter();
         recyclerView.setAdapter(transactionAdapter);
@@ -73,7 +74,7 @@ public class DashboardFragment extends Fragment {
 
     private void navigateToTransaction() {
         NavController navController = NavHostFragment.findNavController(this);
-        navController.navigate(R.id.transaction);
+        navController.navigate(R.id.makePayment);
     }
 
     private void findViews(View view) {
