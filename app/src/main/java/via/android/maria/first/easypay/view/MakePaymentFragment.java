@@ -105,6 +105,7 @@ public class MakePaymentFragment extends Fragment {
 
             transactionViewModel.addTransaction(transaction);
             navigateToDashboard();
+
         });
     }
 
