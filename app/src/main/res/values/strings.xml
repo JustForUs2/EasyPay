@@ -46,4 +46,5 @@
     <string name="amount">Amount</string>
     <string name="select_recipient">Select recipient</string>
     <string name="selected_recipient">Selected recipient</string>
+    <string name="fast_input_label" />
 </resources>
