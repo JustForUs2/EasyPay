@@ -75,7 +75,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/round_button"
         android:onClick="sendTransaction"
-        android:text="@string/send"
+        android:text="Add recipient"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

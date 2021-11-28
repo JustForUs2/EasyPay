@@ -24,7 +24,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void completeTransaction(Transaction transaction) {
         updateBalanceAfterTransaction(transaction);
-        updateReceiverBalanceAfterTransaction(transaction);
+        //updateReceiverBalanceAfterTransaction(transaction);
         registerSenderTransaction(transaction);
         registerReceiverTransaction(transaction);
     }
@@ -61,10 +61,19 @@ public class TransactionServiceImpl implements TransactionService {
 
     private void registerReceiverTransaction(Transaction transaction) {
         transaction.setTransferName("Alex");
+        // Mark receives from ALex receives on plus - so amount should be on plus
+        String amount = transaction.getAmount();
+        amount = "+" + amount;
+        transaction.setAmount(amount);
         transactionRepository.addTransactionToReceiverAccount(transaction);
     }
 
     private void registerSenderTransaction(Transaction transaction) {
+        // Alex should get a transaction registered with minus
+        // Mark receives from ALex receives on plus - so amount should be on plus
+        String amount = transaction.getAmount();
+        amount = "-" + amount;
+        transaction.setAmount(amount);
         transactionRepository.addTransactionToSenderAccount(transaction);
     }
 }
