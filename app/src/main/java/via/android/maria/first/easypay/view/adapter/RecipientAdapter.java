@@ -15,9 +15,26 @@ import via.android.maria.first.easypay.model.Recipient;
 
 public class RecipientAdapter extends RecyclerView.Adapter<RecipientAdapter.ViewHolder> {
     private List<Recipient> recipientList;
+    private OnListItemClickListener onListItemClickListener;
+
+    public RecipientAdapter(OnListItemClickListener onListItemClickListener) {
+        this.onListItemClickListener = onListItemClickListener;
+    }
+
+    public RecipientAdapter() {
+    }
+
+    public void setRecipientListWithListener(List<Recipient> recipientList, OnListItemClickListener onListItemClickListener) {
+        this.recipientList = recipientList;
+        this.onListItemClickListener = onListItemClickListener;
+    }
 
     public void setRecipientList(List<Recipient> recipientList) {
         this.recipientList = recipientList;
+    }
+
+    public void setOnListItemClickListener(OnListItemClickListener onListItemClickListener) {
+        this.onListItemClickListener = onListItemClickListener;
     }
 
     @NonNull
@@ -42,12 +59,23 @@ public class RecipientAdapter extends RecyclerView.Adapter<RecipientAdapter.View
 
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView recipientName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             recipientName = itemView.findViewById(R.id.recipientName);
+            itemView.setOnClickListener(this);
         }
+
+        // TODO ----------------
+        @Override
+        public void onClick(View view) {
+            onListItemClickListener.onListItemClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
     }
 }

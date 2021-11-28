@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import via.android.maria.first.easypay.R;
@@ -27,13 +29,14 @@ import via.android.maria.first.easypay.view.adapter.RecipientAdapter;
 import via.android.maria.first.easypay.viewmodel.RecipientViewModel;
 
 // FRAGMENT B
-public class SelectRecipientFragment extends Fragment {
+public class SelectRecipientFragment extends Fragment implements RecipientAdapter.OnListItemClickListener {
     private Button addRecipientCTA;
     private TextInputEditText recipientName, recipientAccountNum, recipientSortCode;
     private SwitchMaterial switchMaterial;
     private RecipientViewModel recipientViewModel;
     private RecipientAdapter recipientAdapter;
     private RecyclerView recyclerView;
+    private List<Recipient> recipientListLoaded;
 
     public SelectRecipientFragment() {
     }
@@ -64,14 +67,13 @@ public class SelectRecipientFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recipientAdapter = new RecipientAdapter();
+        recipientAdapter = new RecipientAdapter(this);
         recyclerView.setAdapter(recipientAdapter);
+        recipientListLoaded = new ArrayList<>();
 
-        if (recipientViewModel.getRecipients() != null)
-        {
+        if (recipientViewModel.getRecipients() != null) {
             recipientViewModel.getRecipients().observe(getViewLifecycleOwner(), new RecipientObserverImpl());
         }
-
 
 
         addRecipientCTA.setOnClickListener(new View.OnClickListener() {
@@ -87,8 +89,7 @@ public class SelectRecipientFragment extends Fragment {
                 result.putSerializable("bundleKey", recipient);
                 getParentFragmentManager().setFragmentResult("requestKey", result);
 
-                if (switchMaterial.isChecked())
-                {
+                if (switchMaterial.isChecked()) {
                     recipientViewModel.addRecipient(recipient);
                 }
 
@@ -111,10 +112,21 @@ public class SelectRecipientFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recipients_list);
     }
 
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+
+        Recipient recipient = recipientListLoaded.get(clickedItemIndex);
+        recipientName.setText(recipient.getOwnerName());
+        recipientAccountNum.setText(recipient.getAccountNumber());
+        recipientSortCode.setText(recipient.getSortCode());
+        Toast.makeText(getContext(), "Item clicked" + clickedItemIndex, Toast.LENGTH_SHORT).show();
+    }
+
     private class RecipientObserverImpl implements Observer<List<Recipient>> {
         @Override
         public void onChanged(List<Recipient> recipients) {
             recipientAdapter.setRecipientList(recipients);
+            recipientListLoaded = recipients;
             recipientAdapter.notifyDataSetChanged();
         }
     }
