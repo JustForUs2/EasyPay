@@ -25,11 +25,8 @@ public class AccountRepositoryImpl implements AccountRepository {
     private MutableLiveData<Account> senderAccount = new MutableLiveData<>();
     private MutableLiveData<Account> receiverAccount = new MutableLiveData<>();
 
-
     Map<String, Object> senderBalanceData = new HashMap<>();
     Map<String, Object> receiverBalanceData = new HashMap<>();
-    Map<String, Object> senderAccountData = new HashMap<>();
-
 
     public AccountRepositoryImpl() {
     }
@@ -54,7 +51,6 @@ public class AccountRepositoryImpl implements AccountRepository {
                     if (result.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + result.getData());
                         senderBalanceData = result.getData();
-                        //updateBalanceAfterTransaction((String) senderBalanceData.get("balance"));
                         Log.d(TAG, "result" + senderBalanceData);
                     } else {
                         Log.d(TAG, "No such document");
@@ -115,31 +111,6 @@ public class AccountRepositoryImpl implements AccountRepository {
                 Log.d(TAG, "Updated!");
             }
         });
-    }
-
-    @Override
-    public String getSenderAccount() {
-        database.collection("users").document("Me0fwbU1rtGyKN2Xequw")
-                .collection("account").document("2HGHb6mOJ2HbCFBseI7i")
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot result = task.getResult();
-                    if (result.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + result.getData());
-                        senderAccountData = result.getData();
-                        Log.d(TAG, "result" + receiverBalanceData);
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                }
-            }
-        });
-        String balance = (String) senderAccountData.get("balance");
-        Account account = new Account();
-        account.setBalance(balance);
-        return account.getBalance();
     }
 }
 

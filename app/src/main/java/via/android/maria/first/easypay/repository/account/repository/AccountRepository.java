@@ -8,5 +8,4 @@ public interface AccountRepository {
     MutableLiveData<Account> getSenderBalance();
     MutableLiveData<Account> getReceiverBalance();
     void updateBalanceAfterTransaction(String newSenderBalance);
-    String getSenderAccount();
 }

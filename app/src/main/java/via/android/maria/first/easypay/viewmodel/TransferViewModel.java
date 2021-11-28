@@ -30,10 +30,13 @@ public class TransferViewModel extends AndroidViewModel {
 
     public void updateBalanceAfterTransaction(Transaction transaction) {
 
-        double balance = Double.parseDouble(accountRepository.getSenderAccount());
+        LiveData<Account> account = accountRepository.getSenderBalance();
+
+        double balance = Double.parseDouble(account.getValue().getBalance());
         double amount = Double.parseDouble(transaction.getAmount());
 
-        String  newBalance = String.valueOf(balance - amount);
+        double extractAmount = balance - amount;
+        String  newBalance = String.valueOf(extractAmount);
         accountRepository.updateBalanceAfterTransaction(newBalance);
     }
 }
