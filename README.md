@@ -9,10 +9,10 @@ The application will be a clone of the Lunar app focused on tracking expenses wi
  ## Functional Requirements
  
  - [ ] As a user I want to login in order to get an overview of my account, access the currently available balance, list of latest payments made or/and transfer money to another account
- - [ ] As a user I want to be able to make a transfer to another user account in order to complete a payment
+ - [x] As a user I want to be able to make a transfer to another user account in order to complete a payment
  - [ ] As a user I want to receive a notification when a payment has been completed
- - [ ] As a user I would like to save the user account to whom I am sending to, in order to maintain a list of people
- - [ ] As a user I would like to save the payment information of whom I am sending money to, in order to maintain a list of people to whom I often send money
+ - [x] As a user I would like to save the user account to whom I am sending to, in order to maintain a list of people
+ - [x] As a user I would like to save the payment information of whom I am sending money to, in order to maintain a list of people to whom I often send money
  - [ ] As a user I want to be able to categorize my payments such that I know how much I spend on utilities
  - [ ] As a user I want to be able to categorize my payments such that I know how much I spend on food
  - [ ] As a user I want to be able to categorize my payments such that I know how much I spend on clothes.
