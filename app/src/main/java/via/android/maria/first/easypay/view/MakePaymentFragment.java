@@ -82,6 +82,7 @@ public class MakePaymentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_make_payment, container, false);
         findViews(view);
         transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
+        transactionViewModel.init();
         return view;
     }
 

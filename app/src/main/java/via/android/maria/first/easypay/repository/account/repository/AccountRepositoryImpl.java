@@ -21,13 +21,18 @@ import via.android.maria.first.easypay.utils.Constants;
 
 public class AccountRepositoryImpl implements AccountRepository {
     private static AccountRepositoryImpl instance;
-    private FirebaseFirestore database = FirebaseFirestore.getInstance();
-    private MutableLiveData<Account> senderAccount = new MutableLiveData<>();
-    private MutableLiveData<Account> receiverAccount = new MutableLiveData<>();
-    private Map<String, Object> senderBalanceData = new HashMap<>();
-    private Map<String, Object> receiverBalanceData = new HashMap<>();
+    private FirebaseFirestore database;
+    private MutableLiveData<Account> senderAccount;
+    private MutableLiveData<Account> receiverAccount;
+    private Map<String, Object> senderBalanceData;
+    private Map<String, Object> receiverBalanceData;
 
-    public AccountRepositoryImpl() {
+    private AccountRepositoryImpl() {
+        senderBalanceData = new HashMap<>();
+        receiverBalanceData = new HashMap<>();
+        senderAccount = new MutableLiveData<>();
+        receiverAccount = new MutableLiveData<>();
+        database = FirebaseFirestore.getInstance();
     }
 
     public static AccountRepositoryImpl getInstance() {
@@ -93,8 +98,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public void updateBalanceAfterTransaction(String newSenderBalance) {
-       Map<String, Object> newBalance = new HashMap<>();
-       newBalance.put("balance", newSenderBalance);
+        Map<String, Object> newBalance = new HashMap<>();
+        newBalance.put("balance", newSenderBalance);
 
         database.collection("users")
                 .document(Constants.USER_SENDER_DOC_ID)
@@ -102,11 +107,11 @@ public class AccountRepositoryImpl implements AccountRepository {
                 .document(Constants.ACCOUNT_SENDER_DOC_ID)
                 .update(newBalance)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Log.d(TAG, "Updated!");
-            }
-        });
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d(TAG, "Updated!");
+                    }
+                });
     }
 
     @Override

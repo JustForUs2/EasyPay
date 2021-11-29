@@ -24,10 +24,13 @@ import via.android.maria.first.easypay.utils.Constants;
 public class RecipientRepositoryImpl implements RecipientRepository {
     private static RecipientRepositoryImpl instance;
     private FirebaseAuth firebaseAuth;
-    private FirebaseFirestore database = FirebaseFirestore.getInstance();
-    private MutableLiveData<List<Recipient>> list = new MutableLiveData<>();
+    private FirebaseFirestore database;
+    private MutableLiveData<List<Recipient>> list;
 
-    public RecipientRepositoryImpl() {
+    private RecipientRepositoryImpl() {
+        list = new MutableLiveData<>();
+        database = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     public static RecipientRepositoryImpl getInstance() {

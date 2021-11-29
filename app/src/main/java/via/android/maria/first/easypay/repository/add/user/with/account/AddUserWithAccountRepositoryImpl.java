@@ -6,9 +6,10 @@ import via.android.maria.first.easypay.model.User;
 
 public class AddUserWithAccountRepositoryImpl implements AddUserWithAccountRepository {
     private static AddUserWithAccountRepositoryImpl instance;
-    private FirebaseFirestore database = FirebaseFirestore.getInstance();
+    private FirebaseFirestore database;
 
-    public AddUserWithAccountRepositoryImpl() {
+    private AddUserWithAccountRepositoryImpl() {
+        database = FirebaseFirestore.getInstance();
     }
 
     public static AddUserWithAccountRepositoryImpl getInstance() {
