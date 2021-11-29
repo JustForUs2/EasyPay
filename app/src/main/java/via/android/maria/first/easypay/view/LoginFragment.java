@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import org.jetbrains.annotations.NotNull;
 
 import via.android.maria.first.easypay.R;
@@ -22,8 +23,8 @@ import via.android.maria.first.easypay.viewmodel.LoginViewModel;
 
 public class LoginFragment extends Fragment {
 
-    private EditText email;
-    private EditText password;
+    private TextInputEditText email;
+    private TextInputEditText password;
     private Button loginButton;
     private TextView error;
     private LoginViewModel loginViewModel;
