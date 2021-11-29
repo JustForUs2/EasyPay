@@ -9,16 +9,26 @@ public class Transaction {
     private String sortCode;
     private String transferName;
     private String description;
+    private String type; // withdrawal or deposit
 
-    public Transaction(String amount, String sortCode, String accountNumber, String transferName, String description) {
+    public Transaction(String amount, String sortCode, String accountNumber, String transferName, String description, String type) {
         this.amount = amount;
         this.sortCode = sortCode;
         this.accountNumber = accountNumber;
         this.transferName = transferName;
         this.description = description;
+        this.type = type;
     }
 
     public Transaction() {
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @PropertyName("amount")
