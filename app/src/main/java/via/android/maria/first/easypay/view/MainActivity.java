@@ -105,8 +105,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void configureToggleIcon()
-    {
+    private void configureToggleIcon() {
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(toggle);
