@@ -6,4 +6,7 @@ public class Constants {
 
     public static final String USER_RECEIVER_DOC_ID = "E5ZNdWn1xZW9ELmhVKPx";
     public static final String ACCOUNT_RECEIVER_DOC_ID = "bVMiJ8CWPXZICQrLgNi2";
+
+    public static final String WITHDRAWAL_ACCOUNT_TYPE = "withdrawal";
+    public static final String DEPOSIT_ACCOUNT_TYPE = "deposit";
 }

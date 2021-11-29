@@ -80,6 +80,11 @@ public class Transaction {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Transaction copy()
+    {
+        return new Transaction(amount, sortCode, accountNumber, transferName, description, type);
+    }
 }
 
 

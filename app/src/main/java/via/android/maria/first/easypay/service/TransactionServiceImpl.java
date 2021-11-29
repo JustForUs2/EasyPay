@@ -11,6 +11,7 @@ import via.android.maria.first.easypay.repository.account.repository.AccountRepo
 import via.android.maria.first.easypay.repository.account.repository.AccountRepositoryImpl;
 import via.android.maria.first.easypay.repository.transaction.repository.TransactionRepository;
 import via.android.maria.first.easypay.repository.transaction.repository.TransactionRepositoryImpl;
+import via.android.maria.first.easypay.utils.Constants;
 
 public class TransactionServiceImpl implements TransactionService {
     private final AccountRepository accountRepository;
@@ -25,8 +26,9 @@ public class TransactionServiceImpl implements TransactionService {
     public void completeTransaction(Transaction transaction) {
         updateBalanceAfterTransaction(transaction);
         //updateReceiverBalanceAfterTransaction(transaction);
-        registerSenderTransaction(transaction);
+
         registerReceiverTransaction(transaction);
+        registerSenderTransaction(transaction);
     }
 
     @Override
@@ -60,20 +62,27 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     private void registerReceiverTransaction(Transaction transaction) {
-        transaction.setTransferName("Alex");
-        // Mark receives from ALex receives on plus - so amount should be on plus
-        String amount = transaction.getAmount();
-        amount = "+" + amount;
-        transaction.setAmount(amount);
-        transactionRepository.addTransactionToReceiverAccount(transaction);
+        Transaction receiverTransaction = transaction.copy();
+        receiverTransaction.setTransferName("Alex"); // Alex is the sender
+        if (receiverTransaction.getType().equals(Constants.WITHDRAWAL_ACCOUNT_TYPE))
+        {
+            String amount = receiverTransaction.getAmount();
+            amount = "+" + amount;
+            receiverTransaction.setAmount(amount);
+            receiverTransaction.setType(Constants.DEPOSIT_ACCOUNT_TYPE);
+        }
+
+        transactionRepository.addTransactionToReceiverAccount(receiverTransaction);
     }
 
     private void registerSenderTransaction(Transaction transaction) {
-        // Alex should get a transaction registered with minus
-        // Mark receives from ALex receives on plus - so amount should be on plus
-        String amount = transaction.getAmount();
-        amount = "-" + amount;
-        transaction.setAmount(amount);
-        transactionRepository.addTransactionToSenderAccount(transaction);
+        Transaction senderTransaction = transaction.copy();
+        if (senderTransaction.getType().equals(Constants.WITHDRAWAL_ACCOUNT_TYPE))
+        {
+            String amount = senderTransaction.getAmount();
+            amount = "-" + amount;
+            senderTransaction.setAmount(amount);
+        }
+        transactionRepository.addTransactionToSenderAccount(senderTransaction);
     }
 }
