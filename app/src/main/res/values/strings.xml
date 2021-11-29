@@ -56,4 +56,5 @@
     <string name="sign_out">Sign out</string>
     <string name="nav_open">nav open</string>
     <string name="nav_close">nav close</string>
+    <string name="settings">Settings</string>
 </resources>

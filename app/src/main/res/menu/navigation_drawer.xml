@@ -1,29 +1,42 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view"
-    >
+    tools:showIn="navigation_view">
 
-    <group
-        android:id="@+id/group1"
-        android:checkableBehavior="single">
+    <group android:id="@+id/data">
         <item
-            android:id="@+id/nav_type_chart"
-            android:icon="@drawable/ic_baseline_branding_watermark_24"
-            android:title="@string/item" />
+            android:id="@+id/nav_moves"
+            android:icon="@drawable/ic_transaction"
+            android:title="@string/approve" />
+        <item
+            android:id="@+id/nav_abilities"
+            android:icon="@drawable/ic_transaction"
+            android:title="@string/approve" />
+        <item
+            android:id="@+id/nav_items"
+            android:icon="@drawable/ic_transaction"
+            android:title="@string/approve" />
+
+    </group>
+
+    <group android:id="@+id/other">
 
         <item
-            android:id="@+id/nav_iv_calculator"
-            android:icon="@drawable/ic_baseline_adjust_24"
-            android:title="@string/item" />
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_transaction"
+            android:title="@string/approve" />
+
+        <item
+            android:id="@+id/nav_help_and_feedback"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="@string/settings" />
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_baseline_logout_24"
+            android:title="@string/sign_out" />
     </group>
 
 
-    <item android:title="@string/Logout">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_baseline_logout_24"
-                android:title="@string/sign_out" />
-        </menu>
-    </item>
 </menu>
