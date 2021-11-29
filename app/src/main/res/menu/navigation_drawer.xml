@@ -4,9 +4,9 @@
 
     <group android:id="@+id/data">
         <item
-            android:id="@+id/nav_moves"
-            android:icon="@drawable/ic_transaction"
-            android:title="@string/approve" />
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="@string/profile" />
         <item
             android:id="@+id/nav_abilities"
             android:icon="@drawable/ic_transaction"
@@ -26,7 +26,7 @@
             android:title="@string/approve" />
 
         <item
-            android:id="@+id/nav_help_and_feedback"
+            android:id="@+id/nav_settings"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="@string/settings" />
     </group>

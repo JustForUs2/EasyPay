@@ -48,4 +48,9 @@
         android:name="via.android.maria.first.easypay.view.SelectRecipientFragment"
         android:label="fragment_select_recipient"
         tools:layout="@layout/fragment_select_recipient" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="via.android.maria.first.easypay.view.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
