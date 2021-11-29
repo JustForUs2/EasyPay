@@ -24,9 +24,9 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public void completeTransaction(Transaction transaction) {
-        updateBalanceAfterTransaction(transaction);
-        //updateReceiverBalanceAfterTransaction(transaction);
 
+        updateReceiverBalanceAfterTransaction(transaction);
+        updateBalanceAfterTransaction(transaction);
         registerReceiverTransaction(transaction);
         registerSenderTransaction(transaction);
     }
@@ -54,18 +54,15 @@ public class TransactionServiceImpl implements TransactionService {
 
         double balance = Double.parseDouble(receiverAccount.getValue().getBalance());
         double amount = Double.parseDouble(transaction.getAmount());
-
         double addAmountToBalance = balance + amount;
         String newBalance = String.valueOf(addAmountToBalance);
-
         accountRepository.updateReceiverAfterTransaction(newBalance);
     }
 
     private void registerReceiverTransaction(Transaction transaction) {
         Transaction receiverTransaction = transaction.copy();
         receiverTransaction.setTransferName("Alex"); // Alex is the sender
-        if (receiverTransaction.getType().equals(Constants.WITHDRAWAL_ACCOUNT_TYPE))
-        {
+        if (receiverTransaction.getType().equals(Constants.WITHDRAWAL_ACCOUNT_TYPE)) {
             String amount = receiverTransaction.getAmount();
             amount = "+" + amount;
             receiverTransaction.setAmount(amount);
@@ -77,8 +74,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     private void registerSenderTransaction(Transaction transaction) {
         Transaction senderTransaction = transaction.copy();
-        if (senderTransaction.getType().equals(Constants.WITHDRAWAL_ACCOUNT_TYPE))
-        {
+        if (senderTransaction.getType().equals(Constants.WITHDRAWAL_ACCOUNT_TYPE)) {
             String amount = senderTransaction.getAmount();
             amount = "-" + amount;
             senderTransaction.setAmount(amount);

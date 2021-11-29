@@ -24,9 +24,8 @@ public class AccountRepositoryImpl implements AccountRepository {
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
     private MutableLiveData<Account> senderAccount = new MutableLiveData<>();
     private MutableLiveData<Account> receiverAccount = new MutableLiveData<>();
-
-    Map<String, Object> senderBalanceData = new HashMap<>();
-    Map<String, Object> receiverBalanceData = new HashMap<>();
+    private Map<String, Object> senderBalanceData = new HashMap<>();
+    private Map<String, Object> receiverBalanceData = new HashMap<>();
 
     public AccountRepositoryImpl() {
     }
@@ -68,19 +67,19 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public MutableLiveData<Account> getReceiverBalance() {
-        database.collection("users").document("E5ZNdWn1xZW9ELmhVKPx")
-                .collection("account").document("bVMiJ8CWPXZICQrLgNi2")
+        database.collection("users").document(Constants.USER_RECEIVER_DOC_ID)
+                .collection("account").document(Constants.ACCOUNT_RECEIVER_DOC_ID)
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot result = task.getResult();
                     if (result.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + result.getData());
+                        Log.d(TAG, "DocumentSnapshot data receiver: " + result.getData());
                         receiverBalanceData = result.getData();
-                        Log.d(TAG, "result" + receiverBalanceData);
+                        Log.d(TAG, "result receiver" + receiverBalanceData);
                     } else {
-                        Log.d(TAG, "No such document");
+                        Log.d(TAG, "No such document receiver");
                     }
                 }
             }
