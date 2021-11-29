@@ -1,4 +1,4 @@
-package via.android.maria.first.easypay.view;
+package via.android.maria.first.easypay;
 
 import static android.content.ContentValues.TAG;
 
@@ -23,8 +23,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import via.android.maria.first.easypay.R;
 
 public class MainActivity extends AppCompatActivity {
     private NavController navController;
