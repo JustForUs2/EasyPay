@@ -9,11 +9,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -25,7 +25,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import via.android.maria.first.easypay.R;
-import via.android.maria.first.easypay.viewmodel.AddUserWithAccountViewModel;
 
 public class MainActivity extends AppCompatActivity {
     private NavController navController;
@@ -34,10 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private BottomNavigationView bottomNavigationView;
     private Toolbar toolbar;
-    private FirebaseAuth firebaseAuth;
-    // TODO temp
-    private AddUserWithAccountViewModel addUserWithAccountViewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
         setupNavigation();
+        configureToggleIcon();
         authorization();
     }
 
@@ -53,9 +49,6 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigation_view);
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         toolbar = findViewById(R.id.toolbar);
-        //TODO temp
-        addUserWithAccountViewModel = new ViewModelProvider(this)
-                .get(AddUserWithAccountViewModel.class);
     }
 
     private void setupNavigation() {
@@ -99,13 +92,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void authorization() {
-        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
         if (currentUser != null) {
             String uid = currentUser.getUid();
             Log.d(TAG, uid);
-            //addUserWithAccountViewModel.addUserWithAccount(uid);
 
             navController.navigate(R.id.dashboardFragment);
         } else {
@@ -113,6 +105,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void configureToggleIcon()
+    {
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_open, R.string.nav_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+    }
 
     @Override
     public boolean onSupportNavigateUp() {

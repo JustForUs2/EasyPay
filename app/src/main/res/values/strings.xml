@@ -52,4 +52,8 @@
     <string name="add_recipient">Add recipient</string>
     <string name="header_title">Welcome</string>
     <string name="header_text">name</string>
+    <string name="Logout">Communicate</string>
+    <string name="sign_out">Sign out</string>
+    <string name="nav_open">nav open</string>
+    <string name="nav_close">nav close</string>
 </resources>
