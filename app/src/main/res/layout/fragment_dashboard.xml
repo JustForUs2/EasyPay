@@ -36,12 +36,12 @@
             android:id="@+id/current_balance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/_22_480"
+            android:text=""
             android:textColor="@color/primaryTextColor"
             android:textSize="46sp" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/available_balance_heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -51,10 +51,10 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/available_balance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/_22_480"
+            android:text=""
             android:textColor="@color/primaryTextColor"
             android:textSize="16sp" />
 

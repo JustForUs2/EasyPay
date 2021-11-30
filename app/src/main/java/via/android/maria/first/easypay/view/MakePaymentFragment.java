@@ -24,6 +24,7 @@ import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
 
 // FRAGMENT A
+//TODO make common viewModel - extra view model for handling the data exchange - amount and description should be saved
 public class MakePaymentFragment extends Fragment {
     private EditText amount, transferDescription;
     private TextView selectedRecipient;
