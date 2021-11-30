@@ -55,6 +55,11 @@ public class AccountRepositoryImpl implements AccountRepository {
                     if (result.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + result.getData());
                         senderBalanceData = result.getData();
+                        // TODO should happen inside the call back
+                        String balance = (String) senderBalanceData.get("balance");
+                        Account account = new Account();
+                        account.setBalance(balance);
+                        senderAccount.setValue(account);
                         Log.d(TAG, "result" + senderBalanceData);
                     } else {
                         Log.d(TAG, "No such document");
@@ -62,10 +67,6 @@ public class AccountRepositoryImpl implements AccountRepository {
                 }
             }
         });
-        String balance = (String) senderBalanceData.get("balance");
-        Account account = new Account();
-        account.setBalance(balance);
-        senderAccount.setValue(account);
         return senderAccount;
     }
 
@@ -129,6 +130,33 @@ public class AccountRepositoryImpl implements AccountRepository {
                         Log.d(TAG, "Updated!");
                     }
                 });
+    }
+
+    public void readDataAccountReceiver(FirestoreCallback firestoreCallback)
+    {
+        database.collection("users").document(Constants.USER_RECEIVER_DOC_ID)
+                .collection("account").document(Constants.ACCOUNT_RECEIVER_DOC_ID)
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot result = task.getResult();
+                        if (result.exists()) {
+                            Log.d(TAG, "DocumentSnapshot data receiver: " + result.getData());
+                            receiverBalanceData = result.getData();
+                            String balance = (String) receiverBalanceData.get("balance");
+                            Account account = new Account();
+                            account.setBalance(balance);
+                            receiverAccount.setValue(account);
+                            firestoreCallback.onCallback(account);
+                            Log.d(TAG, "result receiver" + receiverBalanceData);
+                        } else {
+                            Log.d(TAG, "No such document receiver");
+                        }
+                    }
+                });
+    }
+
+    public interface FirestoreCallback {
+        void onCallback(Account account);
     }
 }
 

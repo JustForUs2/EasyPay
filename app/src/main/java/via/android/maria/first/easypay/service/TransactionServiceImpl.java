@@ -24,7 +24,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public void completeTransaction(Transaction transaction) {
-        //updateReceiverBalanceAfterTransaction(transaction);
+        updateReceiverBalanceAfterTransaction(transaction);
         updateBalanceAfterTransaction(transaction);
         registerReceiverTransaction(transaction);
         registerSenderTransaction(transaction);
@@ -49,13 +49,13 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     private void updateReceiverBalanceAfterTransaction(Transaction transaction) {
-        LiveData<Account> receiverAccount = accountRepository.getReceiverBalance();
-
-        double balance = Double.parseDouble(receiverAccount.getValue().getBalance());
-        double amount = Double.parseDouble(transaction.getAmount());
-        double addAmountToBalance = balance + amount;
-        String newBalance = String.valueOf(addAmountToBalance);
-        accountRepository.updateReceiverAfterTransaction(newBalance);
+        accountRepository.readDataAccountReceiver(account -> {
+            double balance = Double.parseDouble(account.getBalance());
+            double amount = Double.parseDouble(transaction.getAmount());
+            double addAmountToBalance = balance + amount;
+            String newBalance = String.valueOf(addAmountToBalance);
+            accountRepository.updateReceiverAfterTransaction(newBalance);
+        });
     }
 
     private void registerReceiverTransaction(Transaction transaction) {

@@ -9,4 +9,5 @@ public interface AccountRepository {
     MutableLiveData<Account> getReceiverBalance();
     void updateBalanceAfterTransaction(String newSenderBalance);
     void updateReceiverAfterTransaction(String newBalance);
+    void readDataAccountReceiver(AccountRepositoryImpl.FirestoreCallback firestoreCallback);
 }
