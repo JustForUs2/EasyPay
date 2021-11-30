@@ -30,7 +30,8 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public MutableLiveData<List<Transaction>> getTransactions() {
-        MutableLiveData<List<Transaction>> transactions = transactionRepository.getTransactions();
+        MutableLiveData<List<Transaction>> transactions = new MutableLiveData<>();
+        transactionRepository.getTransactions(transactions::setValue);
         return transactions;
     }
 

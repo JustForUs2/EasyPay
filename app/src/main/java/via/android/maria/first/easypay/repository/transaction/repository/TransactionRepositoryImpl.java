@@ -7,12 +7,9 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -20,6 +17,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 
 import via.android.maria.first.easypay.model.Transaction;
+import via.android.maria.first.easypay.repository.FirestoreCallback;
 import via.android.maria.first.easypay.utils.Constants;
 
 public class TransactionRepositoryImpl implements TransactionRepository {
@@ -81,29 +79,22 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
-    public MutableLiveData<List<Transaction>> getTransactions() {
+    public MutableLiveData<List<Transaction>> getTransactions(FirestoreCallback<List<Transaction>> callback) {
         database.collection("users").document(Constants.USER_SENDER_DOC_ID)
                 .collection("account").document(Constants.ACCOUNT_SENDER_DOC_ID)
                 .collection("transactions")
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    QuerySnapshot document = task.getResult();
-                    if (document != null) {
-                        list.setValue(document.toObjects(Transaction.class));
-                    }
-                } else {
-                    Log.w(TAG, "Error getting documents.", task.getException());
+                .get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                QuerySnapshot document = task.getResult();
+                if (document != null) {
+                    List<Transaction> list = document.toObjects(Transaction.class);
+                    callback.onCallback(list);
                 }
+            } else {
+                Log.w(TAG, "Error getting documents.", task.getException());
             }
         });
 
         return list;
-    }
-
-    private FirebaseUser getCurrentUser() {
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        return currentUser;
     }
 }
