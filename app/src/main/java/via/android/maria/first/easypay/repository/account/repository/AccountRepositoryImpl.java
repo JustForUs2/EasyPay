@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import via.android.maria.first.easypay.model.Account;
+import via.android.maria.first.easypay.repository.FirestoreCallback;
 import via.android.maria.first.easypay.utils.Constants;
 
 public class AccountRepositoryImpl implements AccountRepository {
@@ -132,7 +133,7 @@ public class AccountRepositoryImpl implements AccountRepository {
                 });
     }
 
-    public void readDataAccountReceiver(FirestoreCallback firestoreCallback)
+    public void readDataAccountReceiver(FirestoreCallback<Account> firestoreCallback)
     {
         database.collection("users").document(Constants.USER_RECEIVER_DOC_ID)
                 .collection("account").document(Constants.ACCOUNT_RECEIVER_DOC_ID)
@@ -153,10 +154,6 @@ public class AccountRepositoryImpl implements AccountRepository {
                         }
                     }
                 });
-    }
-
-    public interface FirestoreCallback {
-        void onCallback(Account account);
     }
 }
 
