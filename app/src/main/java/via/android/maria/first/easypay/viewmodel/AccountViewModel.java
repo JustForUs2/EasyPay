@@ -20,7 +20,7 @@ public class AccountViewModel extends AndroidViewModel {
     }
 
     public void init() {
-        this.account = repository.getSenderBalance();
+        account = repository.getSenderBalance();
     }
 
     public LiveData<Account> getBalance() {

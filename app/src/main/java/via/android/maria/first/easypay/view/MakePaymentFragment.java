@@ -19,6 +19,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.model.Recipient;
 import via.android.maria.first.easypay.model.Transaction;
+import via.android.maria.first.easypay.utils.Constants;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
 
@@ -81,7 +82,7 @@ public class MakePaymentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_make_payment, container, false);
         findViews(view);
         transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
-
+        transactionViewModel.init();
         return view;
     }
 
@@ -89,12 +90,11 @@ public class MakePaymentFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // TODO go select recipient and bring data back
         selectCTA.setOnClickListener((v) -> {
             navigateToSelectRecipient();
         });
 
-        // TODO cover errors when fields empty - extract method if possible
+        // TODO error handling - extract method if possible
         sendCTA.setOnClickListener((v) -> {
 
             Transaction transaction = new Transaction();
@@ -104,10 +104,10 @@ public class MakePaymentFragment extends Fragment {
             transaction.setSortCode(bundleSerializableRecipient.getSortCode());
             transaction.setTransferName(bundleSerializableRecipient.getOwnerName());
             transaction.setDescription(transferDescription.getText().toString());
+            transaction.setType(Constants.WITHDRAWAL_ACCOUNT_TYPE);
 
             transactionViewModel.addTransaction(transaction);
             navigateToDashboard();
-
         });
 
         cancelCTA.setOnClickListener((v) -> {

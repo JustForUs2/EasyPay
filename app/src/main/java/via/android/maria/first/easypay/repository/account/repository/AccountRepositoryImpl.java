@@ -21,14 +21,18 @@ import via.android.maria.first.easypay.utils.Constants;
 
 public class AccountRepositoryImpl implements AccountRepository {
     private static AccountRepositoryImpl instance;
-    private FirebaseFirestore database = FirebaseFirestore.getInstance();
-    private MutableLiveData<Account> senderAccount = new MutableLiveData<>();
-    private MutableLiveData<Account> receiverAccount = new MutableLiveData<>();
+    private FirebaseFirestore database;
+    private MutableLiveData<Account> senderAccount;
+    private MutableLiveData<Account> receiverAccount;
+    private Map<String, Object> senderBalanceData;
+    private Map<String, Object> receiverBalanceData;
 
-    Map<String, Object> senderBalanceData = new HashMap<>();
-    Map<String, Object> receiverBalanceData = new HashMap<>();
-
-    public AccountRepositoryImpl() {
+    private AccountRepositoryImpl() {
+        senderBalanceData = new HashMap<>();
+        receiverBalanceData = new HashMap<>();
+        senderAccount = new MutableLiveData<>();
+        receiverAccount = new MutableLiveData<>();
+        database = FirebaseFirestore.getInstance();
     }
 
     public static AccountRepositoryImpl getInstance() {
@@ -68,19 +72,19 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public MutableLiveData<Account> getReceiverBalance() {
-        database.collection("users").document("E5ZNdWn1xZW9ELmhVKPx")
-                .collection("account").document("bVMiJ8CWPXZICQrLgNi2")
+        database.collection("users").document(Constants.USER_RECEIVER_DOC_ID)
+                .collection("account").document(Constants.ACCOUNT_RECEIVER_DOC_ID)
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot result = task.getResult();
                     if (result.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + result.getData());
+                        Log.d(TAG, "DocumentSnapshot data receiver: " + result.getData());
                         receiverBalanceData = result.getData();
-                        Log.d(TAG, "result" + receiverBalanceData);
+                        Log.d(TAG, "result receiver" + receiverBalanceData);
                     } else {
-                        Log.d(TAG, "No such document");
+                        Log.d(TAG, "No such document receiver");
                     }
                 }
             }
@@ -94,8 +98,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public void updateBalanceAfterTransaction(String newSenderBalance) {
-       Map<String, Object> newBalance = new HashMap<>();
-       newBalance.put("balance", newSenderBalance);
+        Map<String, Object> newBalance = new HashMap<>();
+        newBalance.put("balance", newSenderBalance);
 
         database.collection("users")
                 .document(Constants.USER_SENDER_DOC_ID)
@@ -103,11 +107,11 @@ public class AccountRepositoryImpl implements AccountRepository {
                 .document(Constants.ACCOUNT_SENDER_DOC_ID)
                 .update(newBalance)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Log.d(TAG, "Updated!");
-            }
-        });
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d(TAG, "Updated!");
+                    }
+                });
     }
 
     @Override

@@ -28,7 +28,11 @@ public class TransactionViewModel extends AndroidViewModel {
 
     public void init()
     {
-        this.transactions = transactionService.getTransactions();
+        if (transactions != null)
+        {
+            return;
+        }
+       transactions = transactionService.getTransactions();
     }
 
     public LiveData<List<Transaction>> getTransactions()

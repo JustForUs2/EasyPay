@@ -38,13 +38,6 @@ public class DashboardFragment extends Fragment {
     public DashboardFragment() {
     }
 
-    public static DashboardFragment newInstance(String param1, String param2) {
-        DashboardFragment fragment = new DashboardFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,8 +45,10 @@ public class DashboardFragment extends Fragment {
         findViews(view);
         transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
         transactionViewModel.init();
+
         accountModel = new ViewModelProvider(this).get(AccountViewModel.class);
         accountModel.init();
+        initRecyclerView();
         return view;
     }
 
@@ -61,15 +56,18 @@ public class DashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         accountModel.getBalance().observe(getViewLifecycleOwner(), new AccountBalanceImpl());
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        transactionAdapter = new TransactionAdapter();
-        recyclerView.setAdapter(transactionAdapter);
         transactionViewModel.getTransactions().observe(getViewLifecycleOwner(), new TransactionObserverImpl());
 
         floatingCTA.setOnClickListener((v) -> {
             navigateToTransaction();
         });
+    }
+
+    private void initRecyclerView()
+    {
+        transactionAdapter = new TransactionAdapter();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(transactionAdapter);
     }
 
     private void navigateToTransaction() {

@@ -14,23 +14,24 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
-import via.android.maria.first.easypay.model.Account;
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.utils.Constants;
 
 public class TransactionRepositoryImpl implements TransactionRepository {
     private static TransactionRepositoryImpl instance;
-    private FirebaseFirestore database = FirebaseFirestore.getInstance();
-    private MutableLiveData<List<Transaction>> list = new MutableLiveData<>();
+    private FirebaseFirestore database;
+    private MutableLiveData<List<Transaction>> list;
     private FirebaseAuth firebaseAuth;
 
-    public TransactionRepositoryImpl() {
+    private TransactionRepositoryImpl() {
+        list = new MutableLiveData<>();
+        database = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     public static TransactionRepositoryImpl getInstance() {
@@ -102,7 +103,6 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     private FirebaseUser getCurrentUser() {
-        firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         return currentUser;
     }
