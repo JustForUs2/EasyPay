@@ -17,6 +17,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 
 import via.android.maria.first.easypay.model.Transaction;
+import via.android.maria.first.easypay.networking.account.api.TransactionResponseApi;
 import via.android.maria.first.easypay.repository.FirestoreCallback;
 import via.android.maria.first.easypay.utils.Constants;
 
@@ -24,12 +25,13 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     private static TransactionRepositoryImpl instance;
     private FirebaseFirestore database;
     private MutableLiveData<List<Transaction>> list;
-    private FirebaseAuth firebaseAuth;
+
+    private TransactionResponseApi transactionResponseApi;
 
     private TransactionRepositoryImpl() {
         list = new MutableLiveData<>();
         database = FirebaseFirestore.getInstance();
-        firebaseAuth = FirebaseAuth.getInstance();
+        transactionResponseApi = new TransactionResponseApi();
     }
 
     public static TransactionRepositoryImpl getInstance() {
@@ -96,5 +98,27 @@ public class TransactionRepositoryImpl implements TransactionRepository {
         });
 
         return list;
+    }
+
+    @Override
+    public void addTransactionList() {
+        List<Transaction> apiData = transactionResponseApi.getApiData();
+        for (Transaction transaction : apiData) {
+            database.collection("users")
+                    .document(Constants.USER_SENDER_DOC_ID)
+                    .collection("account")
+                    .document(Constants.ACCOUNT_SENDER_DOC_ID).collection("transactions")
+                    .add(transaction).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.w(TAG, "Error adding document", e);
+                }
+            });
+        }
     }
 }
