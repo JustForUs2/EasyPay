@@ -28,7 +28,7 @@ import via.android.maria.first.easypay.viewmodel.AccountViewModel;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
 public class DashboardFragment extends Fragment {
-    private TextView currentBalance;
+    private TextView currentBalance, availableBalance;
     private FloatingActionButton floatingCTA;
     private TransactionAdapter transactionAdapter;
     private TransactionViewModel transactionViewModel;
@@ -79,6 +79,7 @@ public class DashboardFragment extends Fragment {
         floatingCTA = view.findViewById(R.id.fab);
         recyclerView = view.findViewById(R.id.completed_transactions);
         currentBalance = view.findViewById(R.id.current_balance);
+        availableBalance = view.findViewById(R.id.available_balance);
     }
 
     private class TransactionObserverImpl implements Observer<List<Transaction>> {
@@ -93,6 +94,9 @@ public class DashboardFragment extends Fragment {
         @Override
         public void onChanged(Account account) {
             currentBalance.setText(account.getBalance());
+            String balance = account.getBalance();
+            double newAvailableBalance = Double.parseDouble(balance) + 30000;
+            availableBalance.setText(String.valueOf(newAvailableBalance));
         }
     }
 }

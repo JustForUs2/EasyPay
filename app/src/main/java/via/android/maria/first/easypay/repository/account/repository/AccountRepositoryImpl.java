@@ -78,8 +78,10 @@ public class AccountRepositoryImpl implements AccountRepository {
                     Log.d(TAG, "DocumentSnapshot data receiver: " + result.getData());
                     receiverBalanceData = result.getData();
                     String balance = (String) receiverBalanceData.get("balance");
+                    String accountNumber = (String) receiverBalanceData.get("accountNumber");
                     Account account = new Account();
                     account.setBalance(balance);
+                    account.setAccountNumber(accountNumber);
                     firestoreCallback.onCallback(account);
                     Log.d(TAG, "result receiver" + receiverBalanceData);
                 } else {
