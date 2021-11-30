@@ -9,8 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.List;
 
 import via.android.maria.first.easypay.model.Transaction;
-import via.android.maria.first.easypay.service.TransactionService;
-import via.android.maria.first.easypay.service.TransactionServiceImpl;
+import via.android.maria.first.easypay.service.transaction.service.TransactionService;
+import via.android.maria.first.easypay.service.transaction.service.TransactionServiceImpl;
 
 public class TransactionViewModel extends AndroidViewModel {
     private final TransactionService transactionService;

@@ -55,7 +55,7 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        accountModel.getBalance().observe(getViewLifecycleOwner(), new AccountBalanceImpl());
+        accountModel.getAccount().observe(getViewLifecycleOwner(), new AccountBalanceImpl());
         transactionViewModel.getTransactions().observe(getViewLifecycleOwner(), new TransactionObserverImpl());
 
         floatingCTA.setOnClickListener((v) -> {

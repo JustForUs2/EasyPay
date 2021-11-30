@@ -1,4 +1,4 @@
-package via.android.maria.first.easypay.service;
+package via.android.maria.first.easypay.service.transaction.service;
 
 import androidx.lifecycle.MutableLiveData;
 

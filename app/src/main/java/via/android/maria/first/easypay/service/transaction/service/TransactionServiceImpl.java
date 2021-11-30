@@ -1,11 +1,9 @@
-package via.android.maria.first.easypay.service;
+package via.android.maria.first.easypay.service.transaction.service;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
-import via.android.maria.first.easypay.model.Account;
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.repository.account.repository.AccountRepository;
 import via.android.maria.first.easypay.repository.account.repository.AccountRepositoryImpl;
@@ -25,7 +23,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void completeTransaction(Transaction transaction) {
         updateReceiverBalanceAfterTransaction(transaction);
-        updateBalanceAfterTransaction(transaction);
+        updateSenderBalanceAfterTransaction(transaction);
         registerReceiverTransaction(transaction);
         registerSenderTransaction(transaction);
     }
@@ -36,16 +34,15 @@ public class TransactionServiceImpl implements TransactionService {
         return transactions;
     }
 
-    private void updateBalanceAfterTransaction(Transaction transaction) {
+    private void updateSenderBalanceAfterTransaction(Transaction transaction) {
+        accountRepository.readDataAccountSender((account -> {
+            double balance = Double.parseDouble(account.getBalance());
+            double amount = Double.parseDouble(transaction.getAmount());
 
-        LiveData<Account> account = accountRepository.getSenderBalance();
-
-        double balance = Double.parseDouble(account.getValue().getBalance());
-        double amount = Double.parseDouble(transaction.getAmount());
-
-        double extractAmount = balance - amount;
-        String newBalance = String.valueOf(extractAmount);
-        accountRepository.updateBalanceAfterTransaction(newBalance);
+            double extractAmount = balance - amount;
+            String newBalance = String.valueOf(extractAmount);
+            accountRepository.updateBalanceAfterTransaction(newBalance);
+        }));
     }
 
     private void updateReceiverBalanceAfterTransaction(Transaction transaction) {
