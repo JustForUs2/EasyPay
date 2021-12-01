@@ -33,6 +33,7 @@ public class TransactionViewModel extends AndroidViewModel {
             return;
         }
        transactions = transactionService.getTransactions();
+        transactionService.addTransactionList();
     }
 
     public LiveData<List<Transaction>> getTransactions()
