@@ -17,7 +17,7 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public MutableLiveData<User> getUser() {
         repository.getUser((user) -> {
-            userData.postValue(user);
+            userData.setValue(user);
         });
         return userData;
     }
