@@ -12,6 +12,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     public ProfileServiceImpl() {
         repository = ProfileRepositoryImpl.getInstance();
+        userData = new MutableLiveData<>();
     }
 
     @Override
