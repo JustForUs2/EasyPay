@@ -35,6 +35,11 @@ public class TransactionServiceImpl implements TransactionService {
         return transactions;
     }
 
+    @Override
+    public void addTransactionList() {
+        transactionRepository.addTransactionList();
+    }
+
     private void updateSenderBalanceAfterTransaction(Transaction transaction) {
         accountRepository.readDataAccountSender((account -> {
             double balance = Double.parseDouble(account.getBalance());
