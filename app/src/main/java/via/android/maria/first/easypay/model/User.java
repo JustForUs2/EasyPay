@@ -12,6 +12,14 @@ public class User {
         this.uid = uid;
     }
 
+    public User(String name, String surname, String email, String phone) {
+        this.name = name;
+        this.surname = surname;
+        this.account = null;
+        this.email = email;
+        this.phone = phone;
+    }
+
     public User(String uid, String name) {
         this.uid = uid;
         this.name = name;
