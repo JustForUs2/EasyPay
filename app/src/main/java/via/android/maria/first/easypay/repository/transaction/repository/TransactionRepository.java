@@ -11,5 +11,4 @@ public interface TransactionRepository {
     void addTransactionToSenderAccount(Transaction transaction);
     void addTransactionToReceiverAccount(Transaction transaction);
     MutableLiveData<List<Transaction>> getTransactions(FirestoreCallback<List<Transaction>> callback);
-    void addTransactionList();
 }
