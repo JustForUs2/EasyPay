@@ -9,5 +9,4 @@ import via.android.maria.first.easypay.model.Transaction;
 public interface TransactionService {
     void completeTransaction(Transaction transaction);
     MutableLiveData<List<Transaction>> getTransactions();
-    void addTransactionList();
 }
