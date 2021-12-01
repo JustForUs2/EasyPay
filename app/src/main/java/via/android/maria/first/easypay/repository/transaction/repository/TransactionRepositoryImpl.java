@@ -25,12 +25,13 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     private static TransactionRepositoryImpl instance;
     private FirebaseFirestore database;
     private MutableLiveData<List<Transaction>> list;
-
+    private FirebaseAuth firebaseAuth;
     private TransactionResponseApi transactionResponseApi;
 
     private TransactionRepositoryImpl() {
         list = new MutableLiveData<>();
         database = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         transactionResponseApi = new TransactionResponseApi();
     }
 
@@ -121,4 +122,5 @@ public class TransactionRepositoryImpl implements TransactionRepository {
             });
         }
     }
+
 }
