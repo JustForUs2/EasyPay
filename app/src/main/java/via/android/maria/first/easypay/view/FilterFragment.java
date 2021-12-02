@@ -59,23 +59,12 @@ public class FilterFragment extends Fragment {
     private List<Transaction> filterByFood() {
         food_button.setOnClickListener(v-> {
             List<Transaction> transactions = filterListViewModel.getTransactions().getValue();
-
-            Iterator<Transaction> itr = transactions.listIterator();
-            while(itr.hasNext()){
-                Transaction transaction = itr.next();
-                if(!transaction.getDescription().contains("food"))
-                    itr.remove();
+            for(int i = 0; i < transactions.size(); i ++){
+                if(transactions.get(i).getDescription() != null) {
+                    if(transactions.get(i).getDescription().contains("food"))
+                        newList.add(transactions.get(i));
+                }
             }
-
-            newList = transactions;
-
-           /* for(Transaction t : transactions){
-                if(!t.getDescription().contains("food"))
-                    transactions.remove(t);
-            }
-            newList = transactions;
-
-            */
         });
         return newList;
     }
