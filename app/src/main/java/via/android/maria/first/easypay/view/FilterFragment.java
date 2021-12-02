@@ -50,6 +50,40 @@ public class FilterFragment extends Fragment {
         initRecyclerView();
         filterListViewModel.getTransactions().observe(getViewLifecycleOwner(), new FilterListObserver());
         filterByFood();
+        filterByUtilities();
+        filterByClothes();
+    }
+
+    private List<Transaction> filterByClothes() {
+        clothes_button.setOnClickListener(v-> {
+            List<Transaction> transactions = filterListViewModel.getTransactions().getValue();
+            for(int i = 0; i < transactions.size(); i ++){
+                if(transactions.get(i).getDescription() != null) {
+                    if(transactions.get(i).getDescription().contains("clothes"))
+                        newList.add(transactions.get(i));
+                }
+            }
+            transactions.clear();
+            filterAdapter.setTransactionList(newList);
+            filterAdapter.notifyDataSetChanged();
+        });
+        return newList;
+    }
+
+    private List<Transaction> filterByUtilities() {
+        utilities_button.setOnClickListener(v-> {
+            List<Transaction> transactions = filterListViewModel.getTransactions().getValue();
+            for(int i = 0; i < transactions.size(); i ++){
+                if(transactions.get(i).getDescription() != null) {
+                    if(transactions.get(i).getDescription().contains("utilities"))
+                        newList.add(transactions.get(i));
+                }
+            }
+            transactions.clear();
+            filterAdapter.setTransactionList(newList);
+            filterAdapter.notifyDataSetChanged();
+        });
+        return newList;
     }
 
     private List<Transaction> filterByFood() {
