@@ -20,6 +20,7 @@ import java.util.List;
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.view.adapter.FilterAdapter;
+
 import via.android.maria.first.easypay.viewmodel.FilterListViewModel;
 
 public class FilterFragment extends Fragment {
@@ -50,7 +51,6 @@ public class FilterFragment extends Fragment {
         filterListViewModel.getTransactions().observe(getViewLifecycleOwner(), new FilterListObserver());
         filterByFood();
     }
-
 
     private List<Transaction> filterByFood() {
         food_button.setOnClickListener(v-> {
