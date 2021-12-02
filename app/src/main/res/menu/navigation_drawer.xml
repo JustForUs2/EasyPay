@@ -18,6 +18,11 @@
             android:icon="@drawable/ic_baseline_compare_arrows_24"
             android:title="@string/transaction" />
 
+        <item
+            android:id="@+id/filterFragment"
+            android:icon="@drawable/ic_baseline_filter_list_24"
+            android:title="@string/filter_payments" />
+
     </group>
 
     <group android:id="@+id/other">
