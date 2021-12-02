@@ -30,7 +30,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/current_balance"
             android:textColor="@color/fadedText"
-            android:textSize="16sp" />
+            style="@style/labelDashboard"/>
 
         <TextView
             android:id="@+id/current_balance"
@@ -54,9 +54,9 @@
             android:id="@+id/available_balance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
+            style="@style/labelDashboard"
             android:textColor="@color/primaryTextColor"
-            android:textSize="16sp" />
+            />
 
     </LinearLayout>
 
