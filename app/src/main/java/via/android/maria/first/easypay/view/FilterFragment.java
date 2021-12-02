@@ -9,22 +9,19 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.view.adapter.FilterAdapter;
-import via.android.maria.first.easypay.view.adapter.TransactionAdapter;
 import via.android.maria.first.easypay.viewmodel.FilterListViewModel;
-import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
 public class FilterFragment extends Fragment {
     private Button food_button, clothes_button, utilities_button;
@@ -32,9 +29,10 @@ public class FilterFragment extends Fragment {
     private RecyclerView recyclerView;
     private FilterAdapter filterAdapter;
 
-    List<Transaction> newList = new ArrayList<>();
+    MutableLiveData<List<Transaction>> newList = new MutableLiveData<>();
 
-    public FilterFragment() {}
+    public FilterFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,24 +48,30 @@ public class FilterFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initRecyclerView();
         filterListViewModel.getTransactions().observe(getViewLifecycleOwner(), new FilterListObserver());
-        filterByFood();
-    }
+        newList.observe(getViewLifecycleOwner(), new FilterListOnClickObserver());
 
-
-    private List<Transaction> filterByFood() {
-        food_button.setOnClickListener(v-> {
-            List<Transaction> transactions = filterListViewModel.getTransactions().getValue();
-            for(int i = 0; i < transactions.size(); i ++){
-                if(transactions.get(i).getDescription() != null) {
-                    if(transactions.get(i).getDescription().contains("food"))
-                        newList.add(transactions.get(i));
-                }
-            }
+        food_button.setOnClickListener(v -> {
+            filterByFood();
         });
-        return newList;
     }
+
+
+    private void filterByFood() {
+
+        List<Transaction> filteredTransactions = new ArrayList<>();
+        List<Transaction> transactions = filterListViewModel.getTransactions().getValue();
+
+        for (int i = 0; i < transactions.size(); i++) {
+            if (transactions.get(i).getDescription() != null) {
+                if (transactions.get(i).getDescription().contains("food"))
+                    filteredTransactions.add(transactions.get(i));
+            }
+        }
+        filterAdapter.setTransactionList(transactions);
+        //newList.setValue(filteredTransactions);
+    }
+
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         filterAdapter = new FilterAdapter();
@@ -81,7 +85,15 @@ public class FilterFragment extends Fragment {
         recyclerView = view.findViewById(R.id.filter_transactions);
     }
 
-    private class FilterListObserver implements androidx.lifecycle.Observer<List<Transaction>> {
+    private class FilterListObserver implements Observer<List<Transaction>> {
+        @Override
+        public void onChanged(List<Transaction> transactions) {
+            filterAdapter.setTransactionList(transactions);
+            filterAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private class FilterListOnClickObserver implements Observer<List<Transaction>> {
         @Override
         public void onChanged(List<Transaction> transactions) {
             filterAdapter.setTransactionList(transactions);
