@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="via.android.maria.first.easypay.view.LoginFragment"
-        android:label="fragment_login"
+        android:label="Login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_dashboardFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="via.android.maria.first.easypay.view.DashboardFragment"
-        android:label="fragment_dashboard"
+        android:label="Dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
             android:id="@+id/action_dashboardFragment_to_transaction"
@@ -26,41 +26,41 @@
     <fragment
         android:id="@+id/transaction"
         android:name="via.android.maria.first.easypay.view.TransactionFragment"
-        android:label="fragment_transaction"
+        android:label="Transaction"
         tools:layout="@layout/fragment_transaction" />
     <fragment
         android:id="@+id/savedAccounts"
         android:name="via.android.maria.first.easypay.view.RecipientList"
-        android:label="fragment_saved_accounts"
+        android:label="Saved Accounts"
         tools:layout="@layout/fragment_saved_accounts" />
     <fragment
         android:id="@+id/addRecipient"
         android:name="via.android.maria.first.easypay.view.AddRecipientFragment"
-        android:label="fragment_add_recipient"
+        android:label="Add Recipient"
         tools:layout="@layout/fragment_add_recipient" />
     <fragment
         android:id="@+id/makePayment"
         android:name="via.android.maria.first.easypay.view.MakePaymentFragment"
-        android:label="fragment_make_payment"
+        android:label="Transaction"
         tools:layout="@layout/fragment_make_payment" />
     <fragment
         android:id="@+id/selectRecipient"
         android:name="via.android.maria.first.easypay.view.SelectRecipientFragment"
-        android:label="fragment_select_recipient"
+        android:label="Select Recipient"
         tools:layout="@layout/fragment_select_recipient" />
     <fragment
         android:id="@+id/profile"
         android:name="via.android.maria.first.easypay.view.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="via.android.maria.first.easypay.view.SettingsFragment"
-        android:label="fragment_settings"
+        android:label="Settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/filterFragment"
         android:name="via.android.maria.first.easypay.view.FilterFragment"
-        android:label="fragment_filter"
+        android:label="Filter Payments"
         tools:layout="@layout/fragment_filter" />
 </navigation>
