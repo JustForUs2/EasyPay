@@ -9,23 +9,30 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.model.Transaction;
+import via.android.maria.first.easypay.view.adapter.FilterAdapter;
 import via.android.maria.first.easypay.view.adapter.TransactionAdapter;
+import via.android.maria.first.easypay.viewmodel.FilterListViewModel;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
 public class FilterFragment extends Fragment {
     private Button food_button, clothes_button, utilities_button;
-    private TransactionViewModel transactionViewModel;
-    private TransactionAdapter transactionAdapter;
+    private FilterListViewModel filterListViewModel;
     private RecyclerView recyclerView;
+    private FilterAdapter filterAdapter;
+
+    List<Transaction> newList = new ArrayList<>();
 
     public FilterFragment() {}
 
@@ -34,8 +41,8 @@ public class FilterFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_filter, container, false);
         findViews(view);
-        transactionViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
-        transactionViewModel.init();
+        filterListViewModel = new ViewModelProvider(this).get(FilterListViewModel.class);
+        filterListViewModel.init();
         initRecyclerView();
         return view;
     }
@@ -44,30 +51,52 @@ public class FilterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initRecyclerView();
-        transactionViewModel.getTransactions();
-        //filterByFood();
+        filterListViewModel.getTransactions().observe(getViewLifecycleOwner(), new FilterListObserver());
+        filterByFood();
     }
 
-    private void filterByFood() {
+
+    private List<Transaction> filterByFood() {
         food_button.setOnClickListener(v-> {
-            List<Transaction> transactions = (List<Transaction>) transactionViewModel.getTransactions();
-            List<Transaction> newListWithFilter = new ArrayList<>();
-            for(Transaction t : transactions){
-                if(t.getDescription().contains("food"));
-                newListWithFilter.add(t);
+            List<Transaction> transactions = filterListViewModel.getTransactions().getValue();
+
+            Iterator<Transaction> itr = transactions.listIterator();
+            while(itr.hasNext()){
+                Transaction transaction = itr.next();
+                if(!transaction.getDescription().contains("food"))
+                    itr.remove();
             }
+
+            newList = transactions;
+
+           /* for(Transaction t : transactions){
+                if(!t.getDescription().contains("food"))
+                    transactions.remove(t);
+            }
+            newList = transactions;
+
+            */
         });
+        return newList;
     }
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        transactionAdapter = new TransactionAdapter();
-        recyclerView.setAdapter(transactionAdapter);
+        filterAdapter = new FilterAdapter();
+        recyclerView.setAdapter(filterAdapter);
     }
 
     private void findViews(View view) {
         food_button = view.findViewById(R.id.food_button);
         clothes_button = view.findViewById(R.id.clothes_button);
         utilities_button = view.findViewById(R.id.utilities_button);
-        recyclerView = view.findViewById(R.id.completed_transactions);
+        recyclerView = view.findViewById(R.id.filter_transactions);
+    }
+
+    private class FilterListObserver implements androidx.lifecycle.Observer<List<Transaction>> {
+        @Override
+        public void onChanged(List<Transaction> transactions) {
+            filterAdapter.setTransactionList(transactions);
+            filterAdapter.notifyDataSetChanged();
+        }
     }
 }

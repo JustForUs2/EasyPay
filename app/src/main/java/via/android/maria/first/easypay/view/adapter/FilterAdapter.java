@@ -13,7 +13,7 @@ import java.util.List;
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.model.Transaction;
 
-public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
+public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder>{
     private List<Transaction> transactionList;
 
     public void setTransactionList(List<Transaction> transactionList) {
@@ -22,34 +22,36 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @NonNull
     @Override
-    public TransactionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.transaction_list_item, parent, false);
+        View view = inflater.inflate(R.layout.filter_list_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TransactionAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull FilterAdapter.ViewHolder viewHolder, int position) {
         Transaction transaction = transactionList.get(position);
         viewHolder.amount.setText(transaction.getAmount());
         viewHolder.receiverProviderName.setText(transaction.getTransferName());
+        viewHolder.description.setText(transaction.getDescription());
     }
 
     @Override
     public int getItemCount() {
         if (transactionList == null)
-        return 0;
+            return 0;
         return transactionList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder{
         TextView receiverProviderName;
-        TextView amount;
+        TextView amount, description;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             receiverProviderName = itemView.findViewById(R.id.receiveSender);
             amount = itemView.findViewById(R.id.amount);
+            description = itemView.findViewById(R.id.description);
         }
     }
 }
