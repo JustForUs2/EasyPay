@@ -9,10 +9,15 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +30,7 @@ import via.android.maria.first.easypay.viewmodel.FilterListViewModel;
 
 public class FilterFragment extends Fragment {
     private Button food_button, clothes_button, utilities_button;
+    private FloatingActionButton floatingActionButton;
     private FilterListViewModel filterListViewModel;
     private RecyclerView recyclerView;
     private FilterAdapter filterAdapter;
@@ -50,6 +56,49 @@ public class FilterFragment extends Fragment {
         initRecyclerView();
         filterListViewModel.getTransactions().observe(getViewLifecycleOwner(), new FilterListObserver());
         filterByFood();
+        filterByUtilities();
+        filterByClothes();
+
+        floatingActionButton.setOnClickListener(v -> {
+            reload();
+        });
+    }
+
+    private void reload() {
+        NavController navController = NavHostFragment.findNavController(this);
+        navController.navigate(R.id.dashboardFragment);
+    }
+
+    private List<Transaction> filterByClothes() {
+        clothes_button.setOnClickListener(v-> {
+            List<Transaction> transactions = filterListViewModel.getTransactions().getValue();
+            for(int i = 0; i < transactions.size(); i ++){
+                if(transactions.get(i).getDescription() != null) {
+                    if(transactions.get(i).getDescription().contains("clothes"))
+                        newList.add(transactions.get(i));
+                }
+            }
+            transactions.clear();
+            filterAdapter.setTransactionList(newList);
+            filterAdapter.notifyDataSetChanged();
+        });
+        return newList;
+    }
+
+    private List<Transaction> filterByUtilities() {
+        utilities_button.setOnClickListener(v-> {
+            List<Transaction> transactions = filterListViewModel.getTransactions().getValue();
+            for(int i = 0; i < transactions.size(); i ++){
+                if(transactions.get(i).getDescription() != null) {
+                    if(transactions.get(i).getDescription().contains("utilities"))
+                        newList.add(transactions.get(i));
+                }
+            }
+            transactions.clear();
+            filterAdapter.setTransactionList(newList);
+            filterAdapter.notifyDataSetChanged();
+        });
+        return newList;
     }
 
     private List<Transaction> filterByFood() {
@@ -77,6 +126,7 @@ public class FilterFragment extends Fragment {
         food_button = view.findViewById(R.id.food_button);
         clothes_button = view.findViewById(R.id.clothes_button);
         utilities_button = view.findViewById(R.id.utilities_button);
+        floatingActionButton = view.findViewById(R.id.fab_filtering);
         recyclerView = view.findViewById(R.id.filter_transactions);
     }
 
