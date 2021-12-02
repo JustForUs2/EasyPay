@@ -9,7 +9,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,10 +28,9 @@ public class FilterFragment extends Fragment {
     private RecyclerView recyclerView;
     private FilterAdapter filterAdapter;
 
-    MutableLiveData<List<Transaction>> newList = new MutableLiveData<>();
+    List<Transaction> newList = new ArrayList<>();
 
-    public FilterFragment() {
-    }
+    public FilterFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,30 +46,27 @@ public class FilterFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initRecyclerView();
         filterListViewModel.getTransactions().observe(getViewLifecycleOwner(), new FilterListObserver());
-        newList.observe(getViewLifecycleOwner(), new FilterListOnClickObserver());
-
-        food_button.setOnClickListener(v -> {
-            filterByFood();
-        });
+        filterByFood();
     }
 
 
-    private void filterByFood() {
-
-        List<Transaction> filteredTransactions = new ArrayList<>();
-        List<Transaction> transactions = filterListViewModel.getTransactions().getValue();
-
-        for (int i = 0; i < transactions.size(); i++) {
-            if (transactions.get(i).getDescription() != null) {
-                if (transactions.get(i).getDescription().contains("food"))
-                    filteredTransactions.add(transactions.get(i));
+    private List<Transaction> filterByFood() {
+        food_button.setOnClickListener(v-> {
+            List<Transaction> transactions = filterListViewModel.getTransactions().getValue();
+            for(int i = 0; i < transactions.size(); i ++){
+                if(transactions.get(i).getDescription() != null) {
+                    if(transactions.get(i).getDescription().contains("food"))
+                        newList.add(transactions.get(i));
+                }
             }
-        }
-        filterAdapter.setTransactionList(transactions);
-        //newList.setValue(filteredTransactions);
+            transactions.clear();
+            filterAdapter.setTransactionList(newList);
+            filterAdapter.notifyDataSetChanged();
+        });
+        return newList;
     }
-
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         filterAdapter = new FilterAdapter();
@@ -86,14 +81,6 @@ public class FilterFragment extends Fragment {
     }
 
     private class FilterListObserver implements Observer<List<Transaction>> {
-        @Override
-        public void onChanged(List<Transaction> transactions) {
-            filterAdapter.setTransactionList(transactions);
-            filterAdapter.notifyDataSetChanged();
-        }
-    }
-
-    private class FilterListOnClickObserver implements Observer<List<Transaction>> {
         @Override
         public void onChanged(List<Transaction> transactions) {
             filterAdapter.setTransactionList(transactions);
