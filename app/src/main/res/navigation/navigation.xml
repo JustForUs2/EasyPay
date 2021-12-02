@@ -60,7 +60,7 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/filterFragment"
-        android:name="via.android.maria.first.easypay.FilterFragment"
+        android:name="via.android.maria.first.easypay.view.FilterFragment"
         android:label="fragment_filter"
         tools:layout="@layout/fragment_filter" />
 </navigation>
