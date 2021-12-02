@@ -33,6 +33,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         Transaction transaction = transactionList.get(position);
         viewHolder.amount.setText(transaction.getAmount());
         viewHolder.receiverProviderName.setText(transaction.getTransferName());
+        viewHolder.description.setText(transaction.getDescription());
     }
 
     @Override
@@ -44,12 +45,13 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView receiverProviderName;
-        TextView amount;
+        TextView amount, description;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             receiverProviderName = itemView.findViewById(R.id.receiveSender);
             amount = itemView.findViewById(R.id.amount);
+            description = itemView.findViewById(R.id.description);
         }
     }
 }
