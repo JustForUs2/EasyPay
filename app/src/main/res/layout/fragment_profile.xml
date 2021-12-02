@@ -7,46 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".view.ProfileFragment">
 
-    <TextView
-        android:id="@+id/profile_heading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View Profile Information"
-        android:textStyle="bold"
-        android:textSize="26sp"
-        android:textColor="#000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="24dp"
-        />
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/profile_heading"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.73">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            >
+            android:focusableInTouchMode="true">
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_image"
                 android:layout_width="0dp"
-                app:layout_constraintWidth_percent="0.7"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="20dp"
                 android:textColorHint="#808080"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                >
+                app:layout_constraintWidth_percent="0.7">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image"
@@ -57,108 +43,79 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_first_name"
-                app:helperText="First Name"
                 android:layout_width="0dp"
-                app:layout_constraintWidth_percent="0.7"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="14dp"
                 android:textColorHint="#808080"
+                app:helperText="First Name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_image"
-                >
+                app:layout_constraintWidth_percent="0.7">
 
                 <TextView
                     android:id="@+id/profile_first_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    android:gravity="start"
-                    android:padding="10dp"
-                    android:text="Handy"
-                    android:textColor="#000000"
-                    android:textColorHint="#808080"
-                    android:textSize="15sp" />
+                    style="@style/textProfile"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_last_name"
                 android:layout_width="0dp"
-                app:helperText="Last Name"
-                app:layout_constraintWidth_percent="0.7"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:textColorHint="#808080"
+                app:helperText="Last Name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_first_name"
-                >
+                app:layout_constraintWidth_percent="0.7">
 
                 <TextView
                     android:id="@+id/profile_last_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    android:gravity="start"
-                    android:padding="10dp"
-                    android:text="Opinion"
-                    android:textColor="#000000"
-                    android:textColorHint="#808080"
-                    android:textSize="15sp" />
+                    style="@style/textProfile"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_email"
                 android:layout_width="0dp"
-                app:helperText="Email Address"
-                app:layout_constraintWidth_percent="0.7"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:textColorHint="#808080"
+                app:helperText="Email Address"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_last_name"
-                >
+                app:layout_constraintWidth_percent="0.7">
 
                 <TextView
                     android:id="@+id/profile_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    android:gravity="start"
-                    android:inputType="textEmailAddress"
-                    android:padding="10dp"
-                    android:text="handyopinion@gmail.com"
-                    android:textColor="#000000"
-                    android:textColorHint="#808080"
-                    android:textSize="15sp" />
+                    style="@style/textProfile"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_contact_no"
                 android:layout_width="0dp"
-                app:helperText="Contact No"
-                app:layout_constraintWidth_percent="0.7"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:textColorHint="#808080"
+                app:helperText="Contact No"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_email"
-                >
+                app:layout_constraintWidth_percent="0.7">
 
                 <TextView
                     android:id="@+id/profile_contact_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    android:gravity="start"
-                    android:inputType="phone"
-                    android:padding="10dp"
-                    android:text="0300 1234567"
-                    android:textColor="#000000"
-                    android:textColorHint="#808080"
-                    android:textSize="15sp" />
+                    style="@style/textProfile"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 

@@ -60,4 +60,6 @@
     <string name="settings_preference">preference_settings</string>
     <string name="filter_payments">Filter payments</string>
     <string name="settings">Settings</string>
+    <string name="profile_information">Profile Information</string>
+    <string name="first_name">First name</string>
 </resources>
