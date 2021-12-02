@@ -2,6 +2,10 @@ package via.android.maria.first.easypay;
 
 import static android.content.ContentValues.TAG;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,17 +18,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+import via.android.maria.first.easypay.view.SettingsFragment;
+
+public class MainActivity extends AppCompatActivity implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
     private NavController navController;
     private AppBarConfiguration appBarConfiguration;
     private DrawerLayout drawerLayout;
@@ -40,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
         setupNavigation();
         configureToggleIcon();
         authorization();
+        setPreferences();
+    }
+
+    private void setPreferences() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        if(preferences.getBoolean("darkMode", true))
+            setTheme(R.style.AppTheme);
+        else setTheme(R.style.Theme_EasyPay);
+
+        // setContentView(R.layout.activity_main);
     }
 
     private void initViews() {
@@ -131,6 +151,26 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.settings){
+            startActivity(new Intent(MainActivity.this, SettingsFragment.class));
+        }
         return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
+    }
+
+    @SuppressLint("ResourceType")
+    @Override
+    public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
+        final Bundle args = pref.getExtras();
+        final Fragment fragment = getSupportFragmentManager().getFragmentFactory().instantiate(
+                getClassLoader(),
+                pref.getFragment());
+        fragment.setArguments(args);
+        fragment.setTargetFragment(caller, 0);
+        // Replace the existing Fragment with the new Fragment
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.xml.settings_preference, new SettingsFragment())
+                .addToBackStack(null)
+                .commit();
+        return true;
     }
 }
