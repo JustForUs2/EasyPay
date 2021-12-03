@@ -26,3 +26,8 @@ The application will be a clone of the Lunar app focused on tracking expenses wi
  
   ## References
  - https://www.youtube.com/watch?v=mtYBBInIIE8 
+ - https://firebase.google.com/docs/firestore/quickstart 
+ - https://developer.android.com/guide/navigation/navigation-getting-started 
+ - https://material.io/components?platform=android
+ - https://square.github.io/retrofit/ 
+ - https://futurestud.io/tutorials/retrofit-getting-started-and-android-client 
