@@ -24,4 +24,5 @@ The application will be a clone of the Lunar app focused on tracking expenses wi
  * Maria Asenova
  * Constantina Tripon
  
- 
+  ## References
+ - https://www.youtube.com/watch?v=mtYBBInIIE8 
