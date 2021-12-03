@@ -34,3 +34,11 @@ The application will be a clone of the Lunar app focused on tracking expenses wi
  - https://material.io/components?platform=android
  - https://square.github.io/retrofit/ 
  - https://futurestud.io/tutorials/retrofit-getting-started-and-android-client 
+ 
+ ## Package diagram
+ 
+ ![Package Diagram](https://user-images.githubusercontent.com/64922954/144653995-ef257da6-9852-44a6-b467-a75bf32e8c56.png)
+
+ ## Class diagram
+ 
+![Class Diagram](https://user-images.githubusercontent.com/64922954/144654011-7fc3426b-e4c1-490a-84d5-10099c212428.png)
