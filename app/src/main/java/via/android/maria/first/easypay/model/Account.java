@@ -9,15 +9,12 @@ public class Account {
     private List<Transaction> transactions;
     private List<Recipient> recipients;
 
-
     public Account(String balance, String accountNumber, List<Transaction> transactions, List<Recipient> recipientsList) {
         this.balance = balance;
         this.accountNumber = accountNumber;
         this.transactions = transactions;
         this.recipients = recipientsList;
     }
-
-
 
     public Account() {
     }
