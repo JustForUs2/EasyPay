@@ -68,7 +68,6 @@ public class RecipientAdapter extends RecyclerView.Adapter<RecipientAdapter.View
             itemView.setOnClickListener(this);
         }
 
-        // TODO ----------------
         @Override
         public void onClick(View view) {
             onListItemClickListener.onListItemClick(getAdapterPosition());

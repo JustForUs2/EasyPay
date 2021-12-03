@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +27,6 @@ import via.android.maria.first.easypay.model.Recipient;
 import via.android.maria.first.easypay.view.adapter.RecipientAdapter;
 import via.android.maria.first.easypay.viewmodel.RecipientViewModel;
 
-// FRAGMENT B
 public class SelectRecipientFragment extends Fragment implements RecipientAdapter.OnListItemClickListener {
     private Button addRecipientCTA;
     private TextInputEditText recipientName, recipientAccountNum, recipientSortCode;
@@ -119,7 +117,6 @@ public class SelectRecipientFragment extends Fragment implements RecipientAdapte
         recipientName.setText(recipient.getOwnerName());
         recipientAccountNum.setText(recipient.getAccountNumber());
         recipientSortCode.setText(recipient.getSortCode());
-        Toast.makeText(getContext(), recipient.getOwnerName() + " added", Toast.LENGTH_SHORT).show();
     }
 
     private class RecipientObserverImpl implements Observer<List<Recipient>> {

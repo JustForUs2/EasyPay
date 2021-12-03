@@ -28,14 +28,6 @@ public class TransactionFragment extends Fragment {
     public TransactionFragment() {
     }
 
-
-    public static TransactionFragment newInstance(String param1, String param2) {
-        TransactionFragment fragment = new TransactionFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +46,6 @@ public class TransactionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // TODO cover errors when fields empty - extract method if possible
         sendButton.setOnClickListener((v) -> {
 
             Transaction transaction = new Transaction();
@@ -65,7 +56,6 @@ public class TransactionFragment extends Fragment {
             transaction.setTransferName(transferName.getText().toString());
             transaction.setDescription(transferDescription.getText().toString());
 
-            // TODO here ID is hardcoded - needs to be taken from logged in user's account
             transactionViewModel.addTransaction(transaction);
         });
     }
