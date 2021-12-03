@@ -9,7 +9,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -25,7 +24,6 @@ import java.util.List;
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.view.adapter.FilterAdapter;
-
 import via.android.maria.first.easypay.viewmodel.FilterListViewModel;
 
 public class FilterFragment extends Fragment {
@@ -34,8 +32,7 @@ public class FilterFragment extends Fragment {
     private FilterListViewModel filterListViewModel;
     private RecyclerView recyclerView;
     private FilterAdapter filterAdapter;
-
-    List<Transaction> newList = new ArrayList<>();
+    private List<Transaction> newList;
 
     public FilterFragment() {}
 
@@ -47,6 +44,7 @@ public class FilterFragment extends Fragment {
         filterListViewModel = new ViewModelProvider(this).get(FilterListViewModel.class);
         filterListViewModel.init();
         initRecyclerView();
+        newList = new ArrayList<>();
         return view;
     }
 

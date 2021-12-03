@@ -18,6 +18,12 @@
         <item name="colorOnPrimary">@color/white</item>
     </style>
 
+    <style name="loginTextInput">
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ems">10</item>
+    </style>
+
     <style name="ListHeaderStyle">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/primaryColor</item>
@@ -29,24 +35,34 @@
         <item name="android:textSize">28sp</item>
     </style>
 
+    <style name="ListHeaderStyleExtraLarge">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="smallLabel">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primaryColor</item>
+    </style>
+
+    <style name="textProfile">
+        <item name="android:gravity">start</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+
     <style name="MyOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="android:tint">@color/white</item>
     </style>
 
+    <style name="labelDashboard">
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="DrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@color/primaryColor</item>
-    </style>
-
-    <style name="TransactionHeading">
-
-    </style>
-
-    <style name="TransactionWithdrawal">
-
-    </style>
-
-    <style name="TransactionDeposit">
-
     </style>
 
 </resources>

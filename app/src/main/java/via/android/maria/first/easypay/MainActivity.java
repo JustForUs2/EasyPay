@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
         setupNavigation();
         configureToggleIcon();
         authorization();
+        setToolBarVisibility();
         setPreferences();
     }
 
@@ -74,14 +75,22 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
         NavigationUI.setupWithNavController(navigationView, navController);
         setBottomNavigationVisibility();
+
+        navigationView.getMenu().findItem(R.id.nav_signout).setOnMenuItemClickListener(menuItem -> {
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            firebaseAuth.signOut();
+            navController.navigate(R.id.loginFragment);
+            return true;
+        });
     }
 
     private void setToolBarVisibility() {
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.dashboardFragment) {
+            if (destination.getId() == R.id.loginFragment) {
                 toolbar.setVisibility(View.GONE);
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             } else {
+                toolbar.setVisibility(View.VISIBLE);
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
             }
         });

@@ -23,8 +23,6 @@ public class LoginViewModel extends AndroidViewModel {
         firebaseAuth = FirebaseAuth.getInstance();
         showError = new MutableLiveData<>(false);
         isSigned = new MutableLiveData<>(false);
-        // TODO check if needed and why
-        // firebaseAuth.signOut();
     }
 
     public void authenticateUser(String email, String password) {

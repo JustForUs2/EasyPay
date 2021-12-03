@@ -9,4 +9,6 @@ public class Constants {
 
     public static final String WITHDRAWAL_ACCOUNT_TYPE = "withdrawal";
     public static final String DEPOSIT_ACCOUNT_TYPE = "deposit";
+
+    public static final int ACCOUNT_EXTRA_CREDIT = 30000;
 }

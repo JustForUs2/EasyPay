@@ -9,7 +9,7 @@ public class Transaction {
     private String sortCode;
     private String transferName;
     private String description;
-    private String type; // withdrawal or deposit
+    private String type;
 
     public Transaction(String amount, String sortCode, String accountNumber, String transferName, String description, String type) {
         this.amount = amount;

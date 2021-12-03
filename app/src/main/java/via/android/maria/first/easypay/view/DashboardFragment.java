@@ -23,6 +23,7 @@ import java.util.List;
 import via.android.maria.first.easypay.R;
 import via.android.maria.first.easypay.model.Account;
 import via.android.maria.first.easypay.model.Transaction;
+import via.android.maria.first.easypay.utils.Constants;
 import via.android.maria.first.easypay.view.adapter.TransactionAdapter;
 import via.android.maria.first.easypay.viewmodel.AccountViewModel;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
@@ -95,7 +96,7 @@ public class DashboardFragment extends Fragment {
         public void onChanged(Account account) {
             currentBalance.setText(account.getBalance());
             String balance = account.getBalance();
-            double newAvailableBalance = Double.parseDouble(balance) + 30000;
+            double newAvailableBalance = Double.parseDouble(balance) + Constants.ACCOUNT_EXTRA_CREDIT;
             availableBalance.setText(String.valueOf(newAvailableBalance));
         }
     }

@@ -22,9 +22,6 @@ import via.android.maria.first.easypay.model.Transaction;
 import via.android.maria.first.easypay.utils.Constants;
 import via.android.maria.first.easypay.viewmodel.TransactionViewModel;
 
-
-// FRAGMENT A
-//TODO make common viewModel - extra view model for handling the data exchange - amount and description should be saved
 public class MakePaymentFragment extends Fragment {
     private EditText amount, transferDescription;
     private TextView selectedRecipient;
@@ -34,7 +31,6 @@ public class MakePaymentFragment extends Fragment {
 
     public MakePaymentFragment() {
     }
-
 
     public static MakePaymentFragment newInstance(String param1, String param2) {
         MakePaymentFragment fragment = new MakePaymentFragment();
@@ -95,7 +91,6 @@ public class MakePaymentFragment extends Fragment {
             navigateToSelectRecipient();
         });
 
-        // TODO error handling - extract method if possible
         sendCTA.setOnClickListener((v) -> {
 
             Transaction transaction = new Transaction();

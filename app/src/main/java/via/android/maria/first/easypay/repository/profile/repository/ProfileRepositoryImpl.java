@@ -39,7 +39,7 @@ public class ProfileRepositoryImpl implements ProfileRepository {
             if (task.isSuccessful()) {
                 DocumentSnapshot result = task.getResult();
                 if (result.exists()) {
-                    Log.d(TAG, "DocumentSnapshot data---->: " + result.getData());
+                    Log.d(TAG, "DocumentSnapshot data: " + result.getData());
                     Map<String, Object> accountData = result.getData();
                     String name = (String) accountData.get("name");
                     String email = (String) accountData.get("email");
@@ -49,9 +49,9 @@ public class ProfileRepositoryImpl implements ProfileRepository {
                     User user = new User(name, surname,email, phone);
 
                     callback.onCallback(user);
-                    Log.d(TAG, "profileee" + accountData);
+                    Log.d(TAG, "Profile" + accountData);
                 } else {
-                    Log.d(TAG, "profileee No such document");
+                    Log.d(TAG, "No such document");
                 }
             }
         });
