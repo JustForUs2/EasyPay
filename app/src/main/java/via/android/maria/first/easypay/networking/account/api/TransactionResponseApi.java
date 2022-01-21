@@ -30,7 +30,6 @@ public class TransactionResponseApi {
                 }
             }
 
-
             @EverythingIsNonNull
             @Override
             public void onFailure(Call<AccountResponse> call, Throwable t) {
