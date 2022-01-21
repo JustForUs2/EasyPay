@@ -3,6 +3,7 @@ package via.android.maria.first.easypay.networking;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import via.android.maria.first.easypay.networking.account.api.AccountApi;
+import via.android.maria.first.easypay.networking.loan.api.LoanApi;
 
 public class ServiceGenerator {
     private static final Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
@@ -10,13 +11,17 @@ public class ServiceGenerator {
             .addConverterFactory(GsonConverterFactory.create());
 
     private static final Retrofit retrofit = retrofitBuilder.build();
-
     private static final AccountApi accountApi = retrofit.create(AccountApi.class);
+    private static final LoanApi loanApi = retrofit.create(LoanApi.class);
 
     private ServiceGenerator() {
     }
 
     public static AccountApi getAccountApi() {
         return accountApi;
+    }
+
+    public static LoanApi getLoanApi() {
+        return loanApi;
     }
 }
