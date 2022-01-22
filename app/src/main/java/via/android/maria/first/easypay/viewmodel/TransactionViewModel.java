@@ -9,17 +9,21 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.List;
 
 import via.android.maria.first.easypay.model.Transaction;
+import via.android.maria.first.easypay.service.loan.service.LoanService;
+import via.android.maria.first.easypay.service.loan.service.LoanServiceImpl;
 import via.android.maria.first.easypay.service.transaction.service.TransactionService;
 import via.android.maria.first.easypay.service.transaction.service.TransactionServiceImpl;
 
 public class TransactionViewModel extends AndroidViewModel {
     private final TransactionService transactionService;
     private MutableLiveData<List<Transaction>> transactions;
+    private LoanService loanService;
 
 
     public TransactionViewModel(Application application) {
         super(application);
         transactionService = new TransactionServiceImpl();
+        loanService = new LoanServiceImpl();
     }
 
     public void addTransaction(Transaction transaction) {
@@ -32,6 +36,7 @@ public class TransactionViewModel extends AndroidViewModel {
         }
         transactions = transactionService.getTransactions();
         //transactionService.addTransactionList();
+        loanService.addLoans();
     }
 
     public LiveData<List<Transaction>> getTransactions() {

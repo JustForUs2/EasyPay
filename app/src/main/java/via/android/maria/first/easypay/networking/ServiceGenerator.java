@@ -12,7 +12,7 @@ public class ServiceGenerator {
 
     private static final Retrofit retrofit = retrofitBuilder.build();
     private static final AccountApi accountApi = retrofit.create(AccountApi.class);
-    private static final LoanApi loanApi = retrofit.create(LoanApi.class);
+    private static LoanApi loanApi;
 
     private ServiceGenerator() {
     }
@@ -22,6 +22,10 @@ public class ServiceGenerator {
     }
 
     public static LoanApi getLoanApi() {
+        if (loanApi == null){
+            loanApi = new Retrofit.Builder().baseUrl("https://run.mocky.io/")
+                    .addConverterFactory(GsonConverterFactory.create()).build().create(LoanApi.class);
+        }
         return loanApi;
     }
 }

@@ -4,6 +4,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface LoanApi {
-@GET("v3/bad47a5c-eaef-4c4f-ab97-132775f86aa1")
+@GET("/v3/d5c0675c-2e82-436c-ab2a-5eb85b502f7e")
 Call<LoanResponse> getLoanList();
 }
