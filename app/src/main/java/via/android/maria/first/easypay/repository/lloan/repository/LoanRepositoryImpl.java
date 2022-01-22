@@ -39,7 +39,7 @@ public class LoanRepositoryImpl implements LoanRepository {
     public MutableLiveData<List<Loan>> getLoans(FirestoreCallback<List<Loan>> callback) {
         return null;
     }
-    
+
     @Override
     public void addLoansToDB() {
         List<Loan> loanListApiData = loanResponseApi.getLoanListApiData();
