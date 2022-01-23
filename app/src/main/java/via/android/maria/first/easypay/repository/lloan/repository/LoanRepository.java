@@ -1,13 +1,11 @@
 package via.android.maria.first.easypay.repository.lloan.repository;
 
-import androidx.lifecycle.MutableLiveData;
-
 import java.util.List;
 
 import via.android.maria.first.easypay.model.Loan;
 import via.android.maria.first.easypay.repository.FirestoreCallback;
 
 public interface LoanRepository {
-    MutableLiveData<List<Loan>> getLoans(FirestoreCallback<List<Loan>> callback);
+    void getLoans(FirestoreCallback<List<Loan>> callback);
     void addLoansToDB();
 }

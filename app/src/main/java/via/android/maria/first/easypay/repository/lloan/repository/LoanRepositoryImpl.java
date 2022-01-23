@@ -5,12 +5,12 @@ import static android.content.ContentValues.TAG;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class LoanRepositoryImpl implements LoanRepository {
     private static LoanRepositoryImpl instance;
     private LoanResponseApi loanResponseApi;
     private FirebaseFirestore database;
-    
+
     private LoanRepositoryImpl() {
         loanResponseApi = new LoanResponseApi();
         database = FirebaseFirestore.getInstance();
@@ -36,8 +36,19 @@ public class LoanRepositoryImpl implements LoanRepository {
 
     //TODO retrieve all loans from DB
     @Override
-    public MutableLiveData<List<Loan>> getLoans(FirestoreCallback<List<Loan>> callback) {
-        return null;
+    public void getLoans(FirestoreCallback<List<Loan>> callback) {
+        database.collection("loans").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()){
+                QuerySnapshot result = task.getResult();
+                if (result!= null){
+                    List<Loan> loans = result.toObjects(Loan.class);
+                    callback.onCallback(loans);
+                }
+            }
+            else {
+                Log.w(TAG, "Error fetching loans from DB", task.getException());
+            }
+        });
     }
 
     @Override
