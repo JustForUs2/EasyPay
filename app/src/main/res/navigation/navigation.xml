@@ -63,4 +63,9 @@
         android:name="via.android.maria.first.easypay.view.FilterFragment"
         android:label="Filter Payments"
         tools:layout="@layout/fragment_filter" />
+    <fragment
+        android:id="@+id/loanFragment"
+        android:name="via.android.maria.first.easypay.view.LoanFragment"
+        android:label="fragment_loan"
+        tools:layout="@layout/fragment_loan" />
 </navigation>
