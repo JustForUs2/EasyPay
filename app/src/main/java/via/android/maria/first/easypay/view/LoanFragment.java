@@ -32,7 +32,7 @@ public class LoanFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.loan_card, container, false);
+        View view = inflater.inflate(R.layout.fragment_loan, container, false);
         loanViewModel = new ViewModelProvider(this).get(LoanViewModel.class);
         loanViewModel.init();
         initRecyclerView();

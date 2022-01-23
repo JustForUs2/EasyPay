@@ -36,6 +36,10 @@
             android:id="@+id/addRecipient"
             android:icon="@drawable/ic_baseline_add_24"
             android:title="@string/add_recipients" />
+        <item
+            android:id="@+id/loanFragment"
+            android:icon="@drawable/ic_baseline_add_24"
+            android:title="@string/apply_for_loan" />
     </group>
 
     <group android:id="@+id/settings">
