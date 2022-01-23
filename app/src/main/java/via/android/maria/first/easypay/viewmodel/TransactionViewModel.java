@@ -36,7 +36,7 @@ public class TransactionViewModel extends AndroidViewModel {
         }
         transactions = transactionService.getTransactions();
         //transactionService.addTransactionList();
-        loanService.addLoans();
+        //loanService.addLoans();
     }
 
     public LiveData<List<Transaction>> getTransactions() {

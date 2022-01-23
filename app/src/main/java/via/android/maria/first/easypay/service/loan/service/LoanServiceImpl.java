@@ -22,6 +22,8 @@ public class LoanServiceImpl implements LoanService{
 
     @Override
     public MutableLiveData<List<Loan>> getLoans() {
-        return null;
+        MutableLiveData<List<Loan>> loans = new MutableLiveData<>();
+        loanRepository.getLoans(value -> loans.setValue(value));
+        return loans;
     }
 }
