@@ -67,5 +67,10 @@
         android:id="@+id/loanFragment"
         android:name="via.android.maria.first.easypay.view.LoanFragment"
         android:label="fragment_loan"
+        tools:layout="@layout/loan_card" />
+    <fragment
+        android:id="@+id/loanFragment2"
+        android:name="via.android.maria.first.easypay.LoanFragment"
+        android:label="fragment_loan"
         tools:layout="@layout/fragment_loan" />
 </navigation>

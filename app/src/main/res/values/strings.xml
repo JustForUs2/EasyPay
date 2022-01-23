@@ -65,4 +65,12 @@
     <string name="food">Food</string>
     <string name="clothes">Clothes</string>
     <string name="utilities">Utilities</string>
+    <string name="consumer_loan">Consumer loan</string>
+    <string name="purchase_consumer_goods_or_services_immediately">Purchase consumer goods or services immediately</string>
+    <string name="mortgage_auto_loan_education_loan_personal_loan_refinance_loan_and_credit_card">Mortgage, auto loan, education loan, personal loan, refinance loan, and credit card</string>
+    <string name="apply_now">Apply now</string>
+    <string name="immediate_car_loans">Immediate car loans</string>
+    <string name="buy_a_car">Buy a car</string>
+    <string name="car_loan">Car loan</string>
+    <string name="credit_builder_loan">Credit builder loan</string>
 </resources>
