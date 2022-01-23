@@ -23,7 +23,8 @@ public class LoanRepositoryImpl implements LoanRepository {
     private LoanResponseApi loanResponseApi;
     private FirebaseFirestore database;
 
-    public LoanRepositoryImpl() {
+    //was public before
+    private LoanRepositoryImpl() {
         loanResponseApi = new LoanResponseApi();
         database = FirebaseFirestore.getInstance();
     }
