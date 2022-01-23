@@ -20,6 +20,10 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.ViewHolder> {
         this.loanList = loanList;
     }
 
+    public LoanAdapter() {
+
+    }
+
     // convert single list item from XML to View object and store them in VIewHolder
     @NonNull
     @Override
@@ -42,6 +46,10 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.ViewHolder> {
         if (loanList == null)
             return 0;
         return loanList.size();
+    }
+
+    public void setLoanList(List<Loan> loans) {
+        loanList = loans;
     }
 
     // create a ViewHolder class to hold the views sent to the RecyclerView
