@@ -6,10 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import via.android.maria.first.easypay.R;
+import via.android.maria.first.easypay.view.adapter.LoanAdapter;
 
 public class LoanFragment extends Fragment {
+
+    RecyclerView recyclerViewLoans;
+    LoanAdapter loanAdapter;
 
     public LoanFragment() {
         // Required empty public constructor

@@ -30,12 +30,14 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/main_heading_loan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/consumer_loan"
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <TextView
+                    android:id="@+id/description_loan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -44,6 +46,7 @@
                     android:textColor="?android:attr/textColorSecondary" />
 
                 <TextView
+                    android:id="@+id/additional_info_loan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
