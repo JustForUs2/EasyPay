@@ -23,7 +23,7 @@ public class ServiceGenerator {
 
     public static LoanApi getLoanApi() {
         if (loanApi == null){
-            loanApi = new Retrofit.Builder().baseUrl("https://run.mocky.io/")
+            loanApi = new Retrofit.Builder().baseUrl("https://run.mocky.io")
                     .addConverterFactory(GsonConverterFactory.create()).build().create(LoanApi.class);
         }
         return loanApi;
