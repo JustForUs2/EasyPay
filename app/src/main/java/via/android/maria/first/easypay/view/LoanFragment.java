@@ -21,7 +21,7 @@ import via.android.maria.first.easypay.view.adapter.LoanAdapter;
 import via.android.maria.first.easypay.viewmodel.LoanViewModel;
 
 public class LoanFragment extends Fragment {
-    RecyclerView recyclerViewLoans;
+    RecyclerView recyclerView;
     LoanAdapter loanAdapter;
     LoanViewModel loanViewModel;
 
@@ -35,13 +35,18 @@ public class LoanFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_loan, container, false);
         loanViewModel = new ViewModelProvider(this).get(LoanViewModel.class);
         loanViewModel.init();
-        initRecyclerView();
+        findViews(view);
         return view;
+    }
+
+    private void findViews(View view) {
+        recyclerView = view.findViewById(R.id.loan_list);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initRecyclerView();
         loanViewModel.getLoans().observe(getViewLifecycleOwner(), new Observer<List<Loan>>() {
             @Override
             public void onChanged(List<Loan> loans) {
@@ -51,9 +56,9 @@ public class LoanFragment extends Fragment {
     }
 
     private void initRecyclerView() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         loanAdapter = new LoanAdapter();
-        recyclerViewLoans.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewLoans.setAdapter(loanAdapter);
+        recyclerView.setAdapter(loanAdapter);
     }
 
     @Override
