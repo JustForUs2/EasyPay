@@ -14,7 +14,7 @@ import via.android.maria.first.easypay.service.loan.service.LoanService;
 import via.android.maria.first.easypay.service.loan.service.LoanServiceImpl;
 
 public class LoanViewModel extends AndroidViewModel {
-    MutableLiveData<List<Loan>> loans;
+    private MutableLiveData<List<Loan>> loans;
     private LoanService loanService;
 
     public LoanViewModel(@NonNull Application application) {

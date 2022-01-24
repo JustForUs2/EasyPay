@@ -34,7 +34,7 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull LoanAdapter.ViewHolder viewHolder, int position) {
         Loan loan = loanList.get(position);
         viewHolder.loanType.setText(loan.getType());
         viewHolder.description.setText(loan.getDescription());
@@ -53,7 +53,7 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.ViewHolder> {
     }
 
     // create a ViewHolder class to hold the views sent to the RecyclerView
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView loanType, description, additionalInfo;
 
         public ViewHolder(@NonNull View itemView) {

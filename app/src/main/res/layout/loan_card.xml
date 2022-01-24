@@ -33,7 +33,7 @@
                     android:id="@+id/main_heading_loan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/consumer_loan"
+                    android:text=""
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <TextView
@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/purchase_consumer_goods_or_services_immediately"
+                    android:text=""
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
 
@@ -50,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/mortgage_auto_loan_education_loan_personal_loan_refinance_loan_and_credit_card"
+                    android:text=""
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
 

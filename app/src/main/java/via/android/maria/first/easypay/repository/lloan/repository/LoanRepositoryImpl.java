@@ -34,7 +34,6 @@ public class LoanRepositoryImpl implements LoanRepository {
         return instance;
     }
 
-    //TODO retrieve all loans from DB
     @Override
     public void getLoans(FirestoreCallback<List<Loan>> callback) {
         database.collection("loans").get().addOnCompleteListener(task -> {

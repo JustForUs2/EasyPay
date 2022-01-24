@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import via.android.maria.first.easypay.R;
@@ -21,9 +22,10 @@ import via.android.maria.first.easypay.view.adapter.LoanAdapter;
 import via.android.maria.first.easypay.viewmodel.LoanViewModel;
 
 public class LoanFragment extends Fragment {
-    RecyclerView recyclerView;
-    LoanAdapter loanAdapter;
-    LoanViewModel loanViewModel;
+    private RecyclerView recyclerView;
+    private LoanAdapter loanAdapter;
+    private LoanViewModel loanViewModel;
+    private List<Loan> loanList;
 
     public LoanFragment() {
 
@@ -47,17 +49,24 @@ public class LoanFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initRecyclerView();
-        loanViewModel.getLoans().observe(getViewLifecycleOwner(), new Observer<List<Loan>>() {
-            @Override
-            public void onChanged(List<Loan> loans) {
-                loanAdapter.setLoanList(loans);
-            }
-        });
+        if (loanViewModel.getLoans() != null)
+        {
+            loanViewModel.getLoans().observe(getViewLifecycleOwner(), new Observer<List<Loan>>() {
+                @Override
+                public void onChanged(List<Loan> loans) {
+                    loanAdapter.setLoanList(loans);
+                    loanList = loans;
+                    loanAdapter.notifyDataSetChanged();
+                }
+            });
+
+        }
     }
 
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        loanAdapter = new LoanAdapter();
+        loanList = new ArrayList<>();
+        loanAdapter = new LoanAdapter(loanList);
         recyclerView.setAdapter(loanAdapter);
     }
 
